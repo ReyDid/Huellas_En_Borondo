@@ -3,20 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PrtCrp
+  - Fruta
+  - CrpPrsnj
+  - PntFrt
+  - Vc
+  - Obstcl
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoCmr
   - Water
   - UI
   - 
   - 
   - 
   - 
-  - 
-  - 
+  - Cabeza_Prsnj
+  - Cuerpo_Prsnj
   - 
   - 
   - 

@@ -10,6 +10,9 @@ TagManager:
   - PntFrt
   - Vc
   - Obstcl
+  - Rcrrd_Cali
+  - Rcrrd_SanBalisio
+  - Rcrrd_Medellin
   layers:
   - Default
   - TransparentFX
@@ -39,7 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Solido
   - 
   - 
   - 

@@ -12,32 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf74a903faefe9498c18a5396b57aeb, type: 3}
   m_Name: Post_
   m_EditorClassIdentifier: 
-  VignetteEnabled: 0
-  VignettePower: 0
-  VignetteCenter: {x: 0, y: 0}
+  VignetteEnabled: 1
+  VignettePower: 0.66
+  VignetteCenter: {x: 0, y: 0.16}
   BlurEnabled: 0
   BlurRadius: 0.0002
   BlurTextureResolutionDivider: 1
   BlurIterations: 3
   ColorGradingEnabled: 1
   ToneMappingEnabled: 1
-  Gamma: 0.57
-  Exposure: 2.8
-  LUTEnabled: 0
+  Gamma: 0.4
+  Exposure: 4
+  LUTEnabled: 1
   LUT: {fileID: 0}
-  LUTIntensity: 0.19
+  LUTIntensity: 0.04
   ColorsAmount: 32
-  ChromaticAbberationEnabled: 1
+  ChromaticAbberationEnabled: 0
   ColorsShiftAmount: 0.0015
   FishEyeEffectFactor: 0.4
   FishEyeEffectStart: 0.3
   FishEyeEffectEnd: 0.66
   BloomEnabled: 1
-  BloomBlurRadius: 0.0033
+  BloomBlurRadius: 0.0028
   BloomBlurTextureResolutionDivider: 1
-  BloomBlurIterations: 8
+  BloomBlurIterations: 2
   FilterTextureResolutionDivider: 2.5
-  BloomIntensity: 1.9
+  BloomIntensity: 3.1
   BloomThreshold: 0.9
-  BloomSoftThreshold: 0.3
+  BloomSoftThreshold: 0.2
   BloomDebugView: 0

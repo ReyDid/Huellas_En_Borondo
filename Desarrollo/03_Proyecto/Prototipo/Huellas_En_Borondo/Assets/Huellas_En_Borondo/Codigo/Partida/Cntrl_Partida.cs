@@ -19,6 +19,7 @@ public class Cntrl_Partida : MonoBehaviour
     //
     public Dts_Sistema _DatosSstm;
     public Cntrl_Personaje _Personaje;
+    public Cntrl_Camara _Camara;
 
 
     [System.Serializable]
@@ -63,6 +64,20 @@ public class Cntrl_Partida : MonoBehaviour
         else if (_DatosSstm.ID_Sstm == "Movil")
         {
 
+        }
+        //
+        if (_Personaje != null)
+        {
+            if (_Personaje._Estado.Dsplzr <= 0)
+            {
+                _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -28.4f, 1.4f * Time.deltaTime);
+                _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 1.4f, 1.4f * Time.deltaTime);
+            }
+            else
+            {
+                _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
+                _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
+            }
         }
 
 

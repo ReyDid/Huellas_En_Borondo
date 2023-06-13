@@ -7,6 +7,14 @@ public class Clsn_Personaje : MonoBehaviour
     [Header("Personaje")]
     public bool Prsnj1, Prsnj2, PrsnjG;
 
+    [Header("Cuerpo")]
+    public float DstncRyEscl;
+    public LayerMask ObstclEsclr;
+
+    [Header("Escalar")]
+    public bool Escalar;
+    public CapsuleCollider ClsnCrp;
+
     [Header("Referencia")]
     public Cntrl_Personaje _Personaje;
 
@@ -23,7 +31,65 @@ public class Clsn_Personaje : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (name == "Escalar")
+        {
+            RaycastHit ryEscl;
 
+            if (Escalar)
+            {
+                if (Physics.Raycast(transform.position + (Vector3.up * .2f), transform.forward, out ryEscl, DstncRyEscl, ObstclEsclr))
+                {
+                    Debug.DrawLine(transform.position + (Vector3.up * .2f), ryEscl.point, Color.green);
+
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_Escala = true;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_Escala = true;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_Escala = true;
+                    }
+                    //ClsnCrp.enabled = false;
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position + (Vector3.up * .2f), transform.forward * DstncRyEscl, Color.blue);
+
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_Escala = false;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_Escala = false;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_Escala = false;
+                    }
+                    //ClsnCrp.enabled = true;
+                }
+            }
+            else
+            {
+                if (Prsnj1)
+                {
+                    _Personaje._Estado.P1_Escala = false;
+                }
+                if (Prsnj2)
+                {
+                    _Personaje._Estado.P2_Escala = false;
+                }
+                if (PrsnjG)
+                {
+                    _Personaje._Estado.PG_Escala = false;
+                }
+            }
+        }
     }
 
 
@@ -56,22 +122,79 @@ public class Clsn_Personaje : MonoBehaviour
                 }
             }
         }
+
+        if (Otr.gameObject.layer == 28)
+        {
+            switch (name)
+            {
+                case "Escalar":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.FrzGrvd_P1 = 0;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.FrzGrvd_P2 = 0;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.FrzGrvd_PG = 0;
+                    }
+                    break;
+            }
+        }
     }
     void OnTriggerStay(Collider Otr)
     {
         if (Otr.gameObject.layer == 28)
         {
-            if (Prsnj1)
+            switch (name)
             {
-                _Personaje._Estado.P1_EnSuelo = true;
+                case "Pie":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_EnSuelo = !_Personaje._Estado.P1_Escala ? true : false;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_EnSuelo = !_Personaje._Estado.P2_Escala ? true : false;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_EnSuelo = !_Personaje._Estado.PG_Escala ? true : false;
+                    }
+                    break;
             }
-            if (Prsnj2)
+        }
+
+        if (Otr.gameObject.layer == 27)
+        {
+            switch (name)
             {
-                _Personaje._Estado.P2_EnSuelo = true;
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_FrCamino = true;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_FrCamino = true;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_FrCamino = true;
+                    }
+                    break;
             }
-            if (PrsnjG)
+        }
+
+        if (Otr.gameObject.layer == 30)
+        {
+            switch (name)
             {
-                _Personaje._Estado.PG_EnSuelo = true;
+                case "Escalar":
+                    Escalar = true;
+                    break;
             }
         }
     }
@@ -79,17 +202,53 @@ public class Clsn_Personaje : MonoBehaviour
     {
         if (Otr.gameObject.layer == 28)
         {
-            if (Prsnj1)
+            switch (name)
             {
-                _Personaje._Estado.P1_EnSuelo = false;
+                case "Pie":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_EnSuelo = false;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_EnSuelo = false;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_EnSuelo = false;
+                    }
+                    break;
             }
-            if (Prsnj2)
+        }
+
+        if (Otr.gameObject.layer == 27)
+        {
+            switch (name)
             {
-                _Personaje._Estado.P2_EnSuelo = false;
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.P1_FrCamino = false;
+                    }
+                    if (Prsnj2)
+                    {
+                        _Personaje._Estado.P2_FrCamino = false;
+                    }
+                    if (PrsnjG)
+                    {
+                        _Personaje._Estado.PG_FrCamino = false;
+                    }
+                    break;
             }
-            if (PrsnjG)
+        }
+
+        if (Otr.gameObject.layer == 30)
+        {
+            switch (name)
             {
-                _Personaje._Estado.PG_EnSuelo = false;
+                case "Escalar":
+                    Escalar = false;
+                    break;
             }
         }
     }

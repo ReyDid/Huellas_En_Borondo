@@ -5,6 +5,8 @@ using TMPro;
 
 public class Cntrl_Personaje : MonoBehaviour
 {
+    public float Tmp;
+
     [Header("General")]
     public GameObject _Personaje_1;
     [HideInInspector]
@@ -65,8 +67,15 @@ public class Cntrl_Personaje : MonoBehaviour
     public class Estado
     {
         public bool P1_EnSuelo;
+        public bool P1_Escala;
         public bool P2_EnSuelo;
+        public bool P2_Escala;
         public bool PG_EnSuelo;
+        public bool PG_Escala;
+
+        public bool P1_FrCamino;
+        public bool P2_FrCamino;
+        public bool PG_FrCamino;
 
         [HideInInspector]
         public float FrzGrvd_P1;
@@ -146,9 +155,9 @@ public class Cntrl_Personaje : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        entrd_H = _Entrada.Dsplzmnt_H;
+        //entrd_H = _Entrada.Dsplzmnt_H;
         entrd_V = _Entrada.Dspzmnt_V;
-        entrd_Turbo = _Entrada.Turbo;
+        //entrd_Turbo = _Entrada.Turbo;
         entrd_Cambio = Input.GetAxisRaw("Cambiar");
     }
     void FixedUpdate()
@@ -186,7 +195,7 @@ public class Cntrl_Personaje : MonoBehaviour
         }
 
         Interfaz();
-        Time.timeScale = 1;
+        Time.timeScale = Tmp;
     }
 
 
@@ -202,35 +211,66 @@ public class Cntrl_Personaje : MonoBehaviour
     void Gravedad()
     {
         float frzGrvd = 11;
-        float vlcdG = 8;
+        float frzEscl = frzGrvd * 2.5f;
+        float vlcdG = 1.8f * 100;
 
         if (_Estado.P1_EnSuelo)
         {
             _Estado.FrzGrvd_P1 = Mathf.MoveTowards(_Estado.FrzGrvd_P1, 0, vlcdG * Time.deltaTime);
+            //_Estado.FrzGrvd_P1 = 0;
         }
         else
         {
-            _Estado.FrzGrvd_P1 = Mathf.MoveTowards(_Estado.FrzGrvd_P1, -frzGrvd, vlcdG * Time.deltaTime);
+            if (_Estado.P1_Escala)
+            {
+                _Estado.FrzGrvd_P1 = Mathf.MoveTowards(_Estado.FrzGrvd_P1, frzEscl, (vlcdG * 1.1f) * Time.deltaTime);
+                //_Estado.FrzGrvd_P1 = frzEscl;
+            }
+            else
+            {
+                _Estado.FrzGrvd_P1 = Mathf.MoveTowards(_Estado.FrzGrvd_P1, -frzGrvd, (vlcdG * .9f) * Time.deltaTime);
+                //_Estado.FrzGrvd_P1 = -frzGrvd;
+            }
         }
 
 
         if (_Estado.P2_EnSuelo)
         {
             _Estado.FrzGrvd_P2 = Mathf.MoveTowards(_Estado.FrzGrvd_P2, 0, vlcdG * Time.deltaTime);
+            //_Estado.FrzGrvd_P2 = 0;
         }
         else
         {
-            _Estado.FrzGrvd_P2 = Mathf.MoveTowards(_Estado.FrzGrvd_P2, -frzGrvd, vlcdG * Time.deltaTime);
+            if (_Estado.P2_Escala)
+            {
+                _Estado.FrzGrvd_P2 = Mathf.MoveTowards(_Estado.FrzGrvd_P2, frzEscl, (vlcdG * 1.1f) * Time.deltaTime);
+                //_Estado.FrzGrvd_P2 = frzEscl;
+            }
+            else
+            {
+                _Estado.FrzGrvd_P2 = Mathf.MoveTowards(_Estado.FrzGrvd_P2, -frzGrvd, (vlcdG * .9f) * Time.deltaTime);
+                //_Estado.FrzGrvd_P2 = -frzGrvd;
+            }
         }
 
 
         if (_Estado.PG_EnSuelo)
         {
             _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, 0, vlcdG * Time.deltaTime);
+            //_Estado.FrzGrvd_PG = 0;
         }
         else
         {
-            _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -frzGrvd, vlcdG * Time.deltaTime);
+            if (_Estado.PG_Escala)
+            {
+                _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, frzEscl, (vlcdG * 1.1f) * Time.deltaTime);
+                //_Estado.FrzGrvd_PG = frzEscl;
+            }
+            else
+            {
+                _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -frzGrvd, (vlcdG * .9f) * Time.deltaTime);
+                //_Estado.FrzGrvd_PG = -frzGrvd;
+            }
         }
     }
     //
@@ -275,6 +315,10 @@ public class Cntrl_Personaje : MonoBehaviour
         float Grvd = 0;
         Grvd = _Estado.FrzGrvd_P2;
         CrpRgd_2.velocity = (Dsplzmnt) + (Vector3.up * Grvd);
+        if (_Estado.PG_FrCamino)
+        {
+            _Avatar_2.transform.GetChild(1).position = Vector3.Lerp(_Avatar_2.transform.GetChild(1).position, _Avatar_2.transform.position, 2 * Time.deltaTime);
+        }
     }
     void Personaje_Guia()
     {
@@ -305,8 +349,12 @@ public class Cntrl_Personaje : MonoBehaviour
             _Avatar_G.transform.rotation = Quaternion.Lerp(_Avatar_G.transform.rotation, _Personaje_G.transform.GetChild(2).rotation, (_Estado.Vlcd_Rtcn * .38f) * 
                 Time.deltaTime);
         }
+        _Avatar_G.transform.GetChild(1).rotation = Quaternion.Lerp(_Avatar_G.transform.GetChild(1).rotation, _Personaje_G.transform.GetChild(2).rotation,
+                1 * Time.deltaTime); _Avatar_G.transform.GetChild(1).rotation = Quaternion.Lerp(_Avatar_G.transform.GetChild(1).rotation, _Personaje_G.transform.GetChild(2).rotation,
+                 1 * Time.deltaTime);
 
         // Movimiento
+        float dstncSgdr = Vector3.Distance(_Personaje_1.transform.position, _Personaje_G.transform.position);
         float vlz = 40;
         //
         Vector3 Dsplzmnt = Vector3.zero;
@@ -328,7 +376,28 @@ public class Cntrl_Personaje : MonoBehaviour
             }
         }
         //
-        CrpRgd_G.velocity = (Dsplzmnt * ((Vlcd) * Time.deltaTime)) + (Vector3.up * _Estado.FrzGrvd_PG);
+        float v = 0;
+        if (dstncSgdr <= 16)
+        {
+            v = Vlcd * 1.11f;
+        }
+        else
+        {
+            v = Vlcd;
+        }
+        CrpRgd_G.velocity = (Dsplzmnt * ((v) * Time.deltaTime)) + (Vector3.up * _Estado.FrzGrvd_PG);
+        if (_Estado.PG_FrCamino)
+        {
+            _Avatar_G.transform.GetChild(1).position = Vector3.Lerp(_Avatar_G.transform.GetChild(1).position, _Avatar_G.transform.position, .8f * Time.deltaTime);
+        }
+        else
+        {
+            //
+            if (_Avatar_G.transform.GetChild(1).transform.localPosition.x < 6)
+            {
+                _Avatar_G.transform.GetChild(1).localPosition += new Vector3(((Vlcd * .01f) * Time.deltaTime) + (_Estado.FrzDash * Time.deltaTime), 0, 0);
+            }
+        }
     }
 
 
@@ -414,6 +483,7 @@ public class Cntrl_Personaje : MonoBehaviour
     }
     void Desplazamiento()
     {
+        float dstncSgdr = Vector3.Distance(_Personaje_1.transform.position, _Personaje_G.transform.position);
         float vlz = 40;
 
         // Movimiento Frontal
@@ -438,12 +508,28 @@ public class Cntrl_Personaje : MonoBehaviour
             }
         }
         //
+        float v = 0;
+        if (dstncSgdr > 16)
+        {
+            v = Vlcd * 2;
+        }
+        else
+        {
+            v = Vlcd;
+        }
         float Grvd = 0;
         Grvd = _Estado.FrzGrvd_P1;
-        CrpRgd_1.velocity = (Dsplzmnt * ((Vlcd) * Time.deltaTime)) + (Vector3.up * Grvd);
+        CrpRgd_1.velocity = (Dsplzmnt * ((v) * Time.deltaTime)) + (Vector3.up * Grvd);
 
         // Movimiento Lateral
-        _Avatar_1.transform.GetChild(1).localPosition += new Vector3(((VlcdLtrl * 1.1f) * (Vlcd * .02f) * Time.deltaTime) + (_Estado.FrzDash * Time.deltaTime), 0, 0);
+        if (_Estado.PG_FrCamino)
+        {
+            _Avatar_1.transform.GetChild(1).position = Vector3.Lerp(_Avatar_1.transform.GetChild(1).position, _Avatar_1.transform.position, 2 * Time.deltaTime);
+        }
+        else
+        {
+            _Avatar_1.transform.GetChild(1).localPosition += new Vector3(((VlcdLtrl * 1.1f) * (Vlcd * .02f) * Time.deltaTime) + (_Estado.FrzDash * Time.deltaTime), 0, 0);
+        }
     }
     //
     void Acciones()

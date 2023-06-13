@@ -41,10 +41,10 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Limites
   - Solido
-  - 
-  - 
+  - Liquido
+  - Escalar
   - 
   m_SortingLayers:
   - name: Default

@@ -20,6 +20,11 @@ public class Cntrl_Camara : MonoBehaviour
     public Transform _CentroY;
     public float dstncrObjtvCntrX;
     public float dstncrObjtvCntrY;
+    //
+    [HideInInspector]
+    public float PscnZ;
+    [HideInInspector]
+    public float pscnY;
 
     [Header("Referencias")]
     public Encuadre _Encuadre;
@@ -71,6 +76,8 @@ public class Cntrl_Camara : MonoBehaviour
         _CentroY.position = new Vector3(_Objetivo.transform.position.x, _CentroY.position.y, _CentroY.position.z);
         //
         //_Posicion.localPosition = Vector3.Lerp(_Posicion.localPosition, new Vector3(_Encuadre.Encdr_X, _Encuadre.Altr, _Encuadre.Dstnc), VlcdMvmnt * Time.deltaTime);
+        _Posicion.localPosition = new Vector3(_Posicion.localPosition.x, pscnY, PscnZ);
+
 
         Vector3 PscnObjtv = _Soporte.transform.position;
         PscnObjtv = new Vector3(_Objetivo.transform.position.x, _Objetivo.transform.position.y, _Objetivo.transform.position.z);

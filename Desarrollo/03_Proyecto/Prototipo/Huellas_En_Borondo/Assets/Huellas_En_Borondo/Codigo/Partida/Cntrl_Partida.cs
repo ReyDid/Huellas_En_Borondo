@@ -68,6 +68,11 @@ public class Cntrl_Partida : MonoBehaviour
         //
         if (_Personaje != null)
         {
+            _Camara.Cinematica = _Personaje._Estado.EnCnmtc;
+
+
+
+
             if (_Personaje._Estado.Dsplzr <= 0)
             {
                 _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -28.4f, 1.4f * Time.deltaTime);
@@ -75,8 +80,16 @@ public class Cntrl_Partida : MonoBehaviour
             }
             else
             {
-                _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
-                _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
+                if (_Camara.Cinematica)
+                {
+                    _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -38.1f, .8f * Time.deltaTime);
+                    _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 9.99f, 1.1f * Time.deltaTime);
+                }
+                else
+                {
+                    _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
+                    _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
+                }
             }
         }
 

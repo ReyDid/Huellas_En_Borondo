@@ -167,6 +167,19 @@ public class Clsn_Personaje : MonoBehaviour
             }
         }
 
+        if (Otr.gameObject.layer == 26)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.EnCnmtc = true;
+                    }
+                    break;
+            }
+        }
+
         if (Otr.gameObject.layer == 27)
         {
             switch (name)
@@ -216,6 +229,19 @@ public class Clsn_Personaje : MonoBehaviour
                     if (PrsnjG)
                     {
                         _Personaje._Estado.PG_EnSuelo = false;
+                    }
+                    break;
+            }
+        }
+
+        if (Otr.gameObject.layer == 26)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.EnCnmtc = false;
                     }
                     break;
             }

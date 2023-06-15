@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: T
-  m_Shader: {fileID: 4800000, guid: 76374158b4c4e5744b394e9290aae693, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _COLOR_ON _EMISSION _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
     _SPECULARHIGHLIGHTS_OFF _TEX_ON _VCOLOR_ON
   m_LightmapFlags: 2
@@ -81,10 +81,10 @@ Material:
     - _DstBlend: 0
     - _Gloss: 0.5
     - _GlossIntensity: 1
-    - _GlossMapScale: 0.3
+    - _GlossMapScale: 0.32
     - _Glossiness: 0.42
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.31
     - _Mode: 0
     - _NormalIntensity: 0.6
     - _OcclusionStrength: 1
@@ -101,7 +101,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.21979943, g: 0.27005273, b: 0.2924528, a: 1}
-    - _EmissionColor: {r: 0.18867922, g: 0.08308811, b: 0.067046374, a: 1}
+    - _EmissionColor: {r: 0.13207549, g: 0.07311177, b: 0.064376414, a: 1}
     - _HDREmissionColor: {r: 0.18867922, g: 0.123421155, b: 0.036786497, a: 1}
     - _OutlineColor: {r: 0.054901958, g: 0.115381956, b: 0.14117648, a: 1}
   m_BuildTextureStacks: []

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Prueba/Codigo/Control/Entrada.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Huellas_En_Borondo/Codigo/Control/Entrada.inputactions'
 
 using System;
 using System.Collections;

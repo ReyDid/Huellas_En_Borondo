@@ -183,7 +183,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Terreno_Color
-    second: {fileID: 2100000, guid: 172502bfdebeb2949be5426a89c53330, type: 2}
+    second: {fileID: 2100000, guid: 4c362005d34be49468051780f76247c1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

@@ -22,6 +22,7 @@ public class Cntrl_Personaje : MonoBehaviour
     float entrd_V;
     float entrd_Turbo;
     float entrd_Cambio;
+    float frzrCambio;
 
     [Header("Composicion")]
     public int TmñMxm;
@@ -108,14 +109,24 @@ public class Cntrl_Personaje : MonoBehaviour
         [HideInInspector]
         public float TmpDash;
         [HideInInspector]
-        public float TmpDash_;
+        public float TmpEnfrAccn_;
+        [HideInInspector]
+        public float TmpEnfrCmb_;
 
         public bool CmbrPersonaje;
 
         [Header("Estado Personaje")]
         public string Personaje;
+        public int Sld_Dorotea;
+        public int Sld_Benkos;
+        public bool EnLsn;
         public bool EnDash;
         public bool EnCnmtc;
+        public bool EnPlbr;
+        [HideInInspector]
+        public string TpCnmtc;
+        [HideInInspector]
+        public float TmpPlbr;
 
         [Header("Estado Juego")]
         public bool EnPausa;
@@ -157,6 +168,12 @@ public class Cntrl_Personaje : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _Estado.EnPlbr = true;
+            _Estado.TmpPlbr = 3.3f;
+        }
+
         if (_Estado.Auto)
         {
             if (_Estado.EnCnmtc)
@@ -177,7 +194,40 @@ public class Cntrl_Personaje : MonoBehaviour
             {
                 entrd_Turbo = 0;
             }
-            entrd_Cambio = Input.GetAxisRaw("Cambiar");
+            if (_Estado.Sld_Dorotea > 0 && _Estado.Sld_Benkos > 0)
+            {
+                if (!_Estado.EnLsn)
+                {
+                    entrd_Cambio = Input.GetAxisRaw("Cambiar");
+                }
+            }
+            else// Cambio de emergencia
+            {
+                if (!_Estado.EnLsn)
+                {
+                    switch (_Estado.Personaje)
+                    {
+                        case "Dorotea":
+                            if (_Estado.Sld_Dorotea <= 0)
+                            {
+                                frzrCambio = 1;
+                            }
+                            break;
+                        case "Benkos":
+                            if (_Estado.Sld_Benkos <= 0)
+                            {
+                                frzrCambio = 1;
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    frzrCambio = 0;
+                }
+
+                _Estado.EnLsn = true;
+            }
         }
     }
     void FixedUpdate()
@@ -190,29 +240,33 @@ public class Cntrl_Personaje : MonoBehaviour
         Dstnc_PntObjtv = Vector3.Distance(new Vector3(_Personaje_1.transform.position.x, 0, _Personaje_1.transform.position.z),
             new Vector3(Pnts_Rcrrd.transform.GetChild(PntObjtv).position.x, 0, Pnts_Rcrrd.transform.GetChild(PntObjtv).position.z));
 
+        if (_Estado.Sld_Dorotea <= 0 && _Estado.Sld_Benkos <= 0)
+        {
+            _Estado.Fin = true;
+        }
         if (!_Estado.EnPausa && !_Estado.Fin)
         {
             //Time.timeScale = 1;
 
-            Personaje_1();
-            Personaje_2();
-            Personaje_Guia();
+            Reanudar();
         }
         else
         {
             if (_Estado.Fin)
             {
-
+                Perder();
             }
-            if (_Estado.EnPausa)
+            else if (_Estado.EnPausa)
             {
                 //Time.timeScale = 0;
-            }
-            else
-            {
-                //Time.timeScale = 1;
+
+                Pausa();
             }
         }
+
+        Personaje_1();
+        Personaje_2();
+        Personaje_Guia();
 
         Interfaz();
         Time.timeScale = Tmp;
@@ -225,14 +279,16 @@ public class Cntrl_Personaje : MonoBehaviour
         _Estado.Dsplzr = 1;
         _Estado.DsplzrG = 1;
         _Estado.Personaje = "Dorotea";
+        _Estado.Sld_Dorotea = 3;
+        _Estado.Sld_Benkos = 3;
     }
     
 
     void Gravedad()
     {
-        float frzGrvd = 11;
-        float frzEscl = frzGrvd * 2.5f;
-        float vlcdG = 1.8f * 100;
+        float frzGrvd = 11 * 2;
+        float frzEscl = frzGrvd * 4.5f;
+        float vlcdG = .8f * 100;
 
         if (_Estado.P1_EnSuelo)
         {
@@ -573,7 +629,7 @@ public class Cntrl_Personaje : MonoBehaviour
                     }
                     _Estado.DrccnDash = -1;
                     LtrlDsh = ltrlDrch ? 1 : -1;
-                    _Estado.TmpDash_ = .2f;
+                    _Estado.TmpEnfrAccn_ = .06f;
 
                     _Estado.TmpDash = .01f;
                 }
@@ -596,15 +652,15 @@ public class Cntrl_Personaje : MonoBehaviour
             _Estado.EnDash = false;
         }
         //
-        if (_Estado.EnDash)
+        if (_Estado.EnDash || _Estado.CmbrPersonaje)
         {
             
         }
         else
         {
-            if (_Estado.TmpDash_ > 0)
+            if (_Estado.TmpEnfrAccn_ > 0)
             {
-                _Estado.TmpDash_ -= 1 * Time.deltaTime;
+                _Estado.TmpEnfrAccn_ -= 1 * Time.deltaTime;
             }
             else
             {
@@ -618,24 +674,30 @@ public class Cntrl_Personaje : MonoBehaviour
 
         // Cambio de Personaje
         float vlcdCmb = 2;
-        if (entrd_Cambio > 0)
+        if (entrd_Cambio > 0 || frzrCambio > 0)
         {
-            if (!_Estado.CmbrPersonaje)
+            if ((frzrCambio > 0) || (frzrCambio <= 0 && _Estado.TmpEnfrAccn_ <= 0 && _Estado.TmpEnfrCmb_ == 0))
             {
-                if (_Estado.Personaje == "Dorotea")
+                if (!_Estado.CmbrPersonaje)
                 {
-                    _Estado.Personaje = "Benkos";
-                }
-                else if (_Estado.Personaje == "Benkos")
-                {
-                    _Estado.Personaje = "Dorotea";
-                }
-                GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
-                GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
-                Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
-                Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+                    if (_Estado.Personaje == "Dorotea")
+                    {
+                        _Estado.Personaje = "Benkos";
+                    }
+                    else if (_Estado.Personaje == "Benkos")
+                    {
+                        _Estado.Personaje = "Dorotea";
+                    }
+                    GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
+                    GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
+                    Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
+                    Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
 
-                _Estado.CmbrPersonaje = true;
+                    _Estado.CmbrPersonaje = true;
+                }
+
+                _Estado.TmpEnfrAccn_ = .06f;
+                _Estado.TmpEnfrCmb_ = .8f;
             }
         }
         else
@@ -643,10 +705,73 @@ public class Cntrl_Personaje : MonoBehaviour
             _Estado.CmbrPersonaje = false;
         }
         //
+        if (_Estado.TmpEnfrCmb_ > 0)
+        {
+            _Estado.TmpEnfrCmb_ -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            _Estado.TmpEnfrCmb_ = 0;
+        }
+        float ltrl = 0;
+        float dtrs = 0;
+        if (Pdr_Prsnj2.transform.GetChild(0).localPosition.z > 0)// Evitar choque en cambio
+        {
+            ltrl = 1.6f;
+        }
+        else
+        {
+            ltrl = 0;
+        }
+        // Lesionado
+        if (_Estado.EnLsn)
+        {
+            
+        }
+        else
+        {
+
+        }
+        Pdr_Prsnj2.transform.GetChild(0).gameObject.SetActive(!_Estado.EnLsn);
+
+
         Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
-        Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.Lerp(Pdr_Prsnj1.transform.GetChild(0).localPosition, Vector3.zero, vlcdCmb * Time.deltaTime);
+        Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.MoveTowards(Pdr_Prsnj1.transform.GetChild(0).localPosition, new Vector3(-ltrl, 0, dtrs),
+            (vlcdCmb) * Time.deltaTime);
+        //
         Pdr_Prsnj2.transform.GetChild(0).localRotation = Quaternion.identity;
-        Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.Lerp(Pdr_Prsnj2.transform.GetChild(0).localPosition, Vector3.zero, vlcdCmb * Time.deltaTime);
+        Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.MoveTowards(Pdr_Prsnj2.transform.GetChild(0).localPosition, new Vector3(ltrl, 0, dtrs), 
+            (vlcdCmb * 2) * Time.deltaTime);
+    }
+    //
+    void Pausa()
+    {
+        _Estado.Auto = false;
+        Anmdr_Drt.speed = 0;
+        Anmdr_Bnks.speed = 0;
+        Anmdr_Aml.speed = 0;
+    }
+    void Perder()
+    {
+        _Estado.Auto = false;
+        _Estado.Dsplzr = 0;
+        _Estado.DsplzrG = 0;
+    }
+    void Reanudar()
+    {
+        _Estado.Auto = true;
+        _Estado.Dsplzr = 1;
+        if (PntObjtvG != Pnts_Rcrrd.transform.childCount - 1)
+        {
+            _Estado.DsplzrG = 1;
+        }
+        Anmdr_Drt.speed = 1;
+        Anmdr_Bnks.speed = 1;
+        Anmdr_Aml.speed = 1;
+    }
+    void Ganar()
+    {
+
     }
 
 

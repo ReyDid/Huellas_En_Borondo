@@ -13,6 +13,8 @@ public class Cntrl_Camara : MonoBehaviour
     public Transform _Posicion;
     //
     public float VlcdRtcn;
+    [HideInInspector]
+    public float VlcdR;
     public float VlcdMvmnt;
     public float VlcdMvmntGnrl;
 
@@ -62,17 +64,6 @@ public class Cntrl_Camara : MonoBehaviour
         dstncrObjtvCntrX = _Objetivo.transform.position.x - _CentroX.position.x;
         dstncrObjtvCntrY = _Objetivo.transform.position.z - _CentroY.position.z;
 
-        if (Cinematica)
-        {
-            _Encuadre.Angl_X = 3.5f;
-            _Encuadre.Angl_Y = 180;
-        }
-        else
-        {
-            _Encuadre.Angl_X = 40;
-            _Encuadre.Angl_Y = 0;
-        }
-
         Rotacion();
         Mover();
     }
@@ -82,7 +73,7 @@ public class Cntrl_Camara : MonoBehaviour
     {
         Quaternion rtcn = _Rotacion.rotation;
         rtcn.eulerAngles = new Vector3(_Encuadre.Angl_X, _Encuadre.Angl_Y, _Encuadre.Angl_Z);
-        _Rotacion.localRotation = Quaternion.Lerp(_Rotacion.localRotation, rtcn, .8f * Time.deltaTime);
+        _Rotacion.localRotation = Quaternion.Lerp(_Rotacion.localRotation, rtcn, VlcdR * Time.deltaTime);
 
         _Soporte.transform.rotation = Quaternion.Lerp(_Soporte.transform.rotation, _Objetivo.transform.GetChild(0).rotation, VlcdRtcn * Time.deltaTime);
     }

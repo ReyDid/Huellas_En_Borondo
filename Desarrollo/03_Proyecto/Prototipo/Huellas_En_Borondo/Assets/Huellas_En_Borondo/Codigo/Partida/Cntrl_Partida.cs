@@ -13,6 +13,8 @@ public class Cntrl_Partida : MonoBehaviour
     [Header("General")]
     public float Tiempo_SlccnSstm;
     public float Tiempo_J;
+    //
+    bool Reanuda;
 
     [Header("Refrencias")]
     public Tmp_Entradas _TmpEntradas;
@@ -40,6 +42,7 @@ public class Cntrl_Partida : MonoBehaviour
     void Start()
     {
         _TmpEntradas.pntllCmplt = true;
+        Reanuda = true;
         if (Inicio && !Smlr_Build)
         {
             _DatosSstm.ID_Sstm = "";
@@ -72,7 +75,7 @@ public class Cntrl_Partida : MonoBehaviour
 
 
 
-
+            // Cinematica Camara
             if (_Personaje._Estado.Dsplzr <= 0)
             {
                 _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -28.4f, 1.4f * Time.deltaTime);
@@ -82,11 +85,34 @@ public class Cntrl_Partida : MonoBehaviour
             {
                 if (_Camara.Cinematica)
                 {
-                    _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -38.1f, .8f * Time.deltaTime);
-                    _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 9.99f, 1.1f * Time.deltaTime);
+                    switch (_Personaje._Estado.TpCnmtc)
+                    {
+                        case "Curva":
+                        case "AtaqueT":
+                        case "Accion":
+                            _Camara.VlcdR = 1.8f;
+                            _Camara._Encuadre.Angl_X = 3.5f;
+                            _Camara._Encuadre.Angl_Y = 180;
+                            //
+                            _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -38.1f, .8f * Time.deltaTime);
+                            _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 9.99f, 1.1f * Time.deltaTime);
+                            break;
+                        case "Inclina":
+                            _Camara.VlcdR = .8f;
+                            _Camara._Encuadre.Angl_X = 11;
+                            _Camara._Encuadre.Angl_Y = 0;
+                            //
+                            _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -40.1f, 2.5f * Time.deltaTime);
+                            _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 11.1f, 2.5f * Time.deltaTime);
+                            break;
+                    }
                 }
                 else
                 {
+                    _Camara.VlcdR = 3.3f;
+                    _Camara._Encuadre.Angl_X = 40;
+                    _Camara._Encuadre.Angl_Y = 0;
+                    //
                     _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
                     _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
                 }
@@ -117,7 +143,7 @@ public class Cntrl_Partida : MonoBehaviour
             {
                 _TmpEntradas.Pantalla.SetActive(!Screen.fullScreen);
             }
-            _Personaje._Estado.EnPausa = _TmpEntradas.Pantalla.activeInHierarchy;
+            _Personaje._Estado.EnPausa = _TmpEntradas.Pantalla.activeInHierarchy && Reanuda;
 
             if (_Personaje._Entrada.Pausa > 0)
             {
@@ -169,6 +195,7 @@ public class Cntrl_Partida : MonoBehaviour
     public void Partida()
     {
         _TmpEntradas.tmpCrgPrtd = .01f;
+        Reanuda = false;
     }
     public void Ir_Pagina()
     {

@@ -95,34 +95,6 @@ public class Clsn_Personaje : MonoBehaviour
 
     void OnTriggerEnter(Collider Otr)
     {
-        if (name == "Campo_Come")
-        {
-            // Comer Fruta
-            if (Otr.tag == "Fruta")
-            {
-                Otr.transform.parent.parent.GetComponent<Cntrl_Objetos>().Dstr = true;
-            }
-        }
-
-        if (name == "Campo_Muerde")
-        {
-            // Morder
-            if (Otr.tag == "CrpPrsnj" || Otr.tag == "Obstcl")
-            {
-                if (Otr.tag == "CrpPrsnj")
-                {
-                    if (Otr.transform.parent.parent.name != "Cola")
-                    {
-                        _Personaje._Estado.Fin = true;
-                    }
-                }
-                else
-                {
-                    _Personaje._Estado.Fin = true;
-                }
-            }
-        }
-
         if (Otr.gameObject.layer == 28)
         {
             switch (name)
@@ -139,6 +111,30 @@ public class Clsn_Personaje : MonoBehaviour
                     if (PrsnjG)
                     {
                         _Personaje._Estado.FrzGrvd_PG = 0;
+                    }
+                    break;
+            }
+        }
+
+        if (Otr.gameObject.layer == 22)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (Otr.tag == "Obstcl")// Objeto : Obstaculo
+                        {
+                            switch (_Personaje._Estado.Personaje)
+                            {
+                                case "Dorotea":
+                                    _Personaje._Estado.Sld_Dorotea--;
+                                    break;
+                                case "Benkos":
+                                    _Personaje._Estado.Sld_Benkos--;
+                                    break;
+                            }
+                        }
                     }
                     break;
             }
@@ -175,6 +171,7 @@ public class Clsn_Personaje : MonoBehaviour
                     if (Prsnj1)
                     {
                         _Personaje._Estado.EnCnmtc = true;
+                        _Personaje._Estado.TpCnmtc = Otr.name;
                     }
                     break;
             }

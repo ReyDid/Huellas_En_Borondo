@@ -13,6 +13,15 @@ TagManager:
   - Rcrrd_Cali
   - Rcrrd_SanBalisio
   - Rcrrd_Medellin
+  - Trnsprt
+  - Prm
+  - PntGrdr
+  - Hll
+  - Mct
+  - Ltr
+  - ClccnH
+  - "Alf\xF1q"
+  - MMdcnl
   layers:
   - Default
   - TransparentFX
@@ -30,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Villano
   - 
   - 
   - 

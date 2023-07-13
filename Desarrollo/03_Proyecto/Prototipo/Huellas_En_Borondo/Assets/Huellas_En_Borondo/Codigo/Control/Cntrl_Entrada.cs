@@ -15,7 +15,9 @@ public class Cntrl_Entrada : MonoBehaviour
     [HideInInspector]
     public float Dspzmnt_V;
     [HideInInspector]
-    public float Turbo;
+    public float Cambio;
+    [HideInInspector]
+    public float Salto;
 
 
     // Start is called before the first frame update
@@ -37,6 +39,7 @@ public class Cntrl_Entrada : MonoBehaviour
         Dsplzmnt_H = _Entrada.Movimiento.Desplazamiento.ReadValue<Vector2>().x;
         Dspzmnt_V = _Entrada.Movimiento.Desplazamiento.ReadValue<Vector2>().y;
 
-        Turbo = _Entrada.Movimiento.Turbo.ReadValue<float>();
+        Cambio = _Entrada.Movimiento.Cambio.ReadValue<float>();
+        Salto = _Entrada.Movimiento.Salto.ReadValue<float>();
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Cntrl_Interfaz : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class Cntrl_Interfaz : MonoBehaviour
     public RectTransform AvtrR_Bnks;
     public RectTransform Sld_Bnks;
     public RectTransform Hbld_Bnks;
+    //
+    public TMP_Text Pntcn;
+    public TMP_Text Mcts;
+    public List<GameObject> Plbr;
     //
     public RectTransform Sld;
     [HideInInspector]
@@ -56,12 +61,18 @@ public class Cntrl_Interfaz : MonoBehaviour
     {
         _PrsnjSlccn = _Partida._Personaje._Estado.Personaje;
 
+        Puntuacion();
         ColeccionPalabra();
         Personajes();
         Salud();
     }
 
 
+    void Puntuacion()
+    {
+        Pntcn.text = _Partida._Personaje._Estado.Cntd_Huellas.ToString();
+        Mcts.text = _Partida._Personaje._Estado.Cntd_Macetas + "/" + _Partida._Personaje._Estado.CntdTtl_Macetas;
+    }
     void ColeccionPalabra()
     {
         if (_Partida._Personaje._Estado.TmpPlbr > 0)
@@ -85,6 +96,15 @@ public class Cntrl_Interfaz : MonoBehaviour
             BrrIntrfz.anchoredPosition = Vector2.Lerp(BrrIntrfz.anchoredPosition, new Vector2(0, 0), 2 * Time.deltaTime);
             BrrIntrfz.sizeDelta = Vector2.Lerp(BrrIntrfz.sizeDelta, new Vector2(1920, 188), 2 * Time.deltaTime);
         }
+
+
+        Plbr[0].SetActive(_Partida._Personaje._Estado.Ttl_Letras[0] != "");
+        Plbr[1].SetActive(_Partida._Personaje._Estado.Ttl_Letras[1] != "");
+        Plbr[2].SetActive(_Partida._Personaje._Estado.Ttl_Letras[2] != "");
+        Plbr[3].SetActive(_Partida._Personaje._Estado.Ttl_Letras[3] != "");
+        Plbr[4].SetActive(_Partida._Personaje._Estado.Ttl_Letras[4] != "");
+        Plbr[5].SetActive(_Partida._Personaje._Estado.Ttl_Letras[5] != "");
+        Plbr[6].SetActive(_Partida._Personaje._Estado.Ttl_Letras[6] != "");
     }
     void Personajes()
     {

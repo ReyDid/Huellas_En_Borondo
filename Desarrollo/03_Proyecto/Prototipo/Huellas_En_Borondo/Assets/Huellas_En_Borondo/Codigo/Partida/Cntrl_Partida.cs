@@ -16,12 +16,17 @@ public class Cntrl_Partida : MonoBehaviour
     //
     bool Reanuda;
 
+    [Header("Composicion")]
+    public int Estd_Cinematica;
+
     [Header("Refrencias")]
     public Tmp_Entradas _TmpEntradas;
     //
     public Dts_Sistema _DatosSstm;
     public Cntrl_Personaje _Personaje;
     public Cntrl_Camara _Camara;
+    public Cntrl_Cinematica _Cinematica;
+    public Cntrl_Instanciado _Instanciado;
 
 
     [System.Serializable]
@@ -42,11 +47,14 @@ public class Cntrl_Partida : MonoBehaviour
     void Start()
     {
         _TmpEntradas.pntllCmplt = true;
-        Reanuda = true;
         if (Inicio && !Smlr_Build)
         {
             _DatosSstm.ID_Sstm = "";
         }
+
+        _Camara.mltpl_VlcdMvmntGnrl = 1;
+        Reanuda = true;
+        Estd_Cinematica = 1;
     }
     // Update is called once per frame
     void Update()
@@ -72,12 +80,23 @@ public class Cntrl_Partida : MonoBehaviour
         if (_Personaje != null)
         {
             _Camara.Cinematica = _Personaje._Estado.EnCnmtc;
-
+            if (_Camara._Encuadre.Angl_Y == 180)
+            {
+                _Personaje._Estado.Invertido = true;
+            }
+            else
+            {
+                _Personaje._Estado.Invertido = false;
+            }
 
 
             // Cinematica Camara
             if (_Personaje._Estado.Dsplzr <= 0)
             {
+                _Camara.VlcdR = 3.3f;
+                _Camara._Encuadre.Angl_X = 40;
+                _Camara._Encuadre.Angl_Y = 0;
+                //
                 _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -28.4f, 1.4f * Time.deltaTime);
                 _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 1.4f, 1.4f * Time.deltaTime);
             }
@@ -189,9 +208,69 @@ public class Cntrl_Partida : MonoBehaviour
                 }
             }
         }
+
+
+        Cinematicas();
     }
 
 
+
+    void Cinematicas()
+    {
+        _Cinematica._Animador.speed = _Personaje.Anmdr_Drt.speed;
+        _Personaje._Estado.Cinematica = Estd_Cinematica > 0;
+        _Cinematica.Cinematica = Estd_Cinematica > 0;
+
+        switch (Estd_Cinematica)
+        {
+            case 0://
+                if (_Camara.mltpl_VlcdMvmntGnrl == 0)
+                {
+                    _Camara.mltpl_VlcdMvmntGnrl = .01f;
+                }
+                else
+                {
+                    _Camara.mltpl_VlcdMvmntGnrl = Mathf.Lerp(_Camara.mltpl_VlcdMvmntGnrl, 1, .3f * Time.deltaTime);
+                }
+                _Personaje._Estado.Cinematica = false;
+                //
+                _Cinematica._Estados.InicoBorondo = false;
+                _Cinematica._Estados.ObtencionMacetas = false;
+                _Cinematica._Estados.DespojeSombraOlvido = false;
+                break;
+            case 1:// Inicio de Borondo
+                _Cinematica._Estados.InicoBorondo = true;
+                if (_Cinematica._Animador.GetCurrentAnimatorStateInfo(0).IsName("InicioBorondo") && _Cinematica._Animador.GetCurrentAnimatorStateInfo(0).normalizedTime > .97
+                        && !_Cinematica._Animador.IsInTransition(0))
+                {
+                    _Camara.mltpl_VlcdMvmntGnrl = 0;
+
+                    _Cinematica.Restablecer = true;
+                    if (_Cinematica.Rstblcd)
+                    {
+                        Estd_Cinematica = 0;
+                        _Cinematica.Rstblcd = false;
+                    }
+                }
+                break;
+            case 2:// Obtencion de Macetas
+                _Cinematica._Estados.ObtencionMacetas = true;
+                break;
+            case 3:// Despoje de la Sombra del Olvido
+                _Cinematica._Estados.DespojeSombraOlvido = true;
+                break;
+        }
+    }
+
+
+    public void Reinicio()
+    {
+        Estd_Cinematica = 1;
+        _Cinematica.Reinicio();
+
+        _Personaje.Reinicio();
+        _Instanciado.Reinicio();
+    }
     public void Partida()
     {
         _TmpEntradas.tmpCrgPrtd = .01f;

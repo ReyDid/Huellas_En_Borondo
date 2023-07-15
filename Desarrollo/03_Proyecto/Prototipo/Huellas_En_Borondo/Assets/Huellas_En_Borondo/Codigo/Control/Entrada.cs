@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Prueba/Codigo/Control/Entrada.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Huellas_En_Borondo/Codigo/Control/Entrada.inputactions'
 
 using System;
 using System.Collections;
@@ -35,7 +35,15 @@ public class @Entrada : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Turbo"",
+                    ""name"": ""Cambio"",
+                    ""type"": ""Button"",
+                    ""id"": ""08f0500a-5a9d-4834-b309-2f3506a220ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Salto"",
                     ""type"": ""Button"",
                     ""id"": ""9163a226-9058-4809-b063-e0d059516f07"",
                     ""expectedControlType"": ""Button"",
@@ -172,7 +180,7 @@ public class @Entrada : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Turbo"",
+                    ""action"": ""Salto"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -183,7 +191,7 @@ public class @Entrada : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Turbo"",
+                    ""action"": ""Salto"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -208,6 +216,28 @@ public class @Entrada : IInputActionCollection, IDisposable
                     ""action"": ""Pausa"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91d1d551-a50e-419b-9f51-41e2aa7e0702"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cambio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1a315dd-a8cb-4d6f-9742-61fbae2774d4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cambio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -218,7 +248,8 @@ public class @Entrada : IInputActionCollection, IDisposable
         m_Movimiento = asset.FindActionMap("Movimiento", throwIfNotFound: true);
         m_Movimiento_Pausa = m_Movimiento.FindAction("Pausa", throwIfNotFound: true);
         m_Movimiento_Desplazamiento = m_Movimiento.FindAction("Desplazamiento", throwIfNotFound: true);
-        m_Movimiento_Turbo = m_Movimiento.FindAction("Turbo", throwIfNotFound: true);
+        m_Movimiento_Cambio = m_Movimiento.FindAction("Cambio", throwIfNotFound: true);
+        m_Movimiento_Salto = m_Movimiento.FindAction("Salto", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -270,14 +301,16 @@ public class @Entrada : IInputActionCollection, IDisposable
     private IMovimientoActions m_MovimientoActionsCallbackInterface;
     private readonly InputAction m_Movimiento_Pausa;
     private readonly InputAction m_Movimiento_Desplazamiento;
-    private readonly InputAction m_Movimiento_Turbo;
+    private readonly InputAction m_Movimiento_Cambio;
+    private readonly InputAction m_Movimiento_Salto;
     public struct MovimientoActions
     {
         private @Entrada m_Wrapper;
         public MovimientoActions(@Entrada wrapper) { m_Wrapper = wrapper; }
         public InputAction @Pausa => m_Wrapper.m_Movimiento_Pausa;
         public InputAction @Desplazamiento => m_Wrapper.m_Movimiento_Desplazamiento;
-        public InputAction @Turbo => m_Wrapper.m_Movimiento_Turbo;
+        public InputAction @Cambio => m_Wrapper.m_Movimiento_Cambio;
+        public InputAction @Salto => m_Wrapper.m_Movimiento_Salto;
         public InputActionMap Get() { return m_Wrapper.m_Movimiento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -293,9 +326,12 @@ public class @Entrada : IInputActionCollection, IDisposable
                 @Desplazamiento.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnDesplazamiento;
                 @Desplazamiento.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnDesplazamiento;
                 @Desplazamiento.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnDesplazamiento;
-                @Turbo.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnTurbo;
-                @Turbo.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnTurbo;
-                @Turbo.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnTurbo;
+                @Cambio.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
+                @Cambio.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
+                @Cambio.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
+                @Salto.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnSalto;
+                @Salto.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnSalto;
+                @Salto.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnSalto;
             }
             m_Wrapper.m_MovimientoActionsCallbackInterface = instance;
             if (instance != null)
@@ -306,9 +342,12 @@ public class @Entrada : IInputActionCollection, IDisposable
                 @Desplazamiento.started += instance.OnDesplazamiento;
                 @Desplazamiento.performed += instance.OnDesplazamiento;
                 @Desplazamiento.canceled += instance.OnDesplazamiento;
-                @Turbo.started += instance.OnTurbo;
-                @Turbo.performed += instance.OnTurbo;
-                @Turbo.canceled += instance.OnTurbo;
+                @Cambio.started += instance.OnCambio;
+                @Cambio.performed += instance.OnCambio;
+                @Cambio.canceled += instance.OnCambio;
+                @Salto.started += instance.OnSalto;
+                @Salto.performed += instance.OnSalto;
+                @Salto.canceled += instance.OnSalto;
             }
         }
     }
@@ -317,6 +356,7 @@ public class @Entrada : IInputActionCollection, IDisposable
     {
         void OnPausa(InputAction.CallbackContext context);
         void OnDesplazamiento(InputAction.CallbackContext context);
-        void OnTurbo(InputAction.CallbackContext context);
+        void OnCambio(InputAction.CallbackContext context);
+        void OnSalto(InputAction.CallbackContext context);
     }
 }

@@ -4,18 +4,69 @@ using UnityEngine;
 
 public class Almcn_Objetos : MonoBehaviour
 {
+    public GameObject InstncObjt;
+
     [Header("General")]
-    public GameObject Cj_Frutas;
+    public GameObject Cj_Transportes;
+    public GameObject Cj_Rastreo;
+    public GameObject Cj_Cono;
+    public GameObject Cj_Basura;
+    public GameObject Cj_BoteBasura;
+    public GameObject Cj_Bloques;
+    public GameObject Cj_MuroBloques;
+    public GameObject Cj_Silla;
+    public GameObject Cj_Maceta;
+    public GameObject Cj_Letra;
+    public GameObject Cj_ColeccionHlls;
+    public GameObject Cj_Alfeñique;
+    public GameObject Cj_MtMedicinal;
     //
-    public Cntrl_Objetos _Fruta;
+    public Cntrl_Objetos _Chiva;
+    public Cntrl_Objetos _Canastos;
+    public Cntrl_Objetos _Canoa;
+    public Cntrl_Objetos _Huella;
+    public Cntrl_Objetos _Cono;
+    public Cntrl_Objetos _Basura;
+    public Cntrl_Objetos _BoteBasura;
+    public Cntrl_Objetos _Bloques;
+    public Cntrl_Objetos _MuroBloques;
+    public Cntrl_Objetos _Silla;
+    public Cntrl_Objetos _Maceta;
+    public Cntrl_Objetos _Letra;
+    public Cntrl_Objetos _ColeccionHlls;
+    public Cntrl_Objetos _Alfeñique;
+    public Cntrl_Objetos _MtMedicinal;
 
     [Header("Composicion")]
-    public int Cntd_Frts;
-    public Cntrl_Objetos[] _Frutas;
+    public Cntrl_Objetos Chiva;
+    public Cntrl_Objetos Canastos;
+    public Cntrl_Objetos Canoa;
+    public int Cntd_Hlls;
+    public Cntrl_Objetos[] Huellas;
+    public int Cntd_Cns;
+    public Cntrl_Objetos[] Conos;
+    public int Cntd_Bsrs;
+    public Cntrl_Objetos[] Basuras;
+    public int Cntd_BtsBsr;
+    public Cntrl_Objetos[] BotesBasura;
+    public int Cntd_Blqs;
+    public Cntrl_Objetos[] Bloques;
+    public int Cntd_MrsBlqs;
+    public Cntrl_Objetos[] MurosBloques;
+    public int Cntd_Slls;
+    public Cntrl_Objetos[] Sillas;
+    public int Cntd_Mcts;
+    public Cntrl_Objetos[] Macetas;
+    public int Cntd_Ltrs;
+    public Cntrl_Objetos[] Letras;
+    public int Cntd_ClccnsH;
+    public Cntrl_Objetos[] ColeccionesHlls;
+    public int Cntd_Alfñqs;
+    public Cntrl_Objetos[] Alfeñiques;
+    public int Cntd_MMdcnls;
+    public Cntrl_Objetos[] MtsMedicinales;
 
 
-<<<<<<< Updated upstream
-=======
     void Awake()
     {
         if (Chiva == null)
@@ -173,21 +224,10 @@ public class Almcn_Objetos : MonoBehaviour
             MtsMedicinales[i].gameObject.SetActive(false);
         }
     }
->>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
-        _Frutas = new Cntrl_Objetos[Cntd_Frts];
-        for (int i = 0; i < Cntd_Frts; i++)
-        {
-            GameObject Objt = Instantiate(_Fruta.gameObject);
-            Objt.transform.parent = Cj_Frutas.transform;
-            Objt.transform.position = Cj_Frutas.transform.position;
-            Objt.name = "Fruta_" + (i + 1);
-
-            _Frutas[i] = Objt.GetComponent<Cntrl_Objetos>();
-            _Frutas[i].gameObject.SetActive(false);
-        }
+        InstncObjt.SetActive(false);
     }
     // Update is called once per frame
     void Update()

@@ -13,8 +13,6 @@ TagManager:
   - Rcrrd_Cali
   - Rcrrd_SanBalisio
   - Rcrrd_Medellin
-<<<<<<< Updated upstream
-=======
   - Trnsprt
   - Prm
   - PntGrdr
@@ -27,7 +25,6 @@ TagManager:
   - ZnCl
   - ZnMdlln
   - ZnSBsl
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -45,17 +42,17 @@ TagManager:
   - 
   - 
   - 
+  - Villano
   - 
   - 
   - 
   - 
   - 
+  - Objeto
+  - Objeto_Crp
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Cinematica
   - Limites
   - Solido
   - Liquido

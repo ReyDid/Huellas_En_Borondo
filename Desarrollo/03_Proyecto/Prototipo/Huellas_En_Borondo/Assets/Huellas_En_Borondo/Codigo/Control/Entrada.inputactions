@@ -22,7 +22,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Turbo",
+                    "name": "Cambio",
+                    "type": "Button",
+                    "id": "08f0500a-5a9d-4834-b309-2f3506a220ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Salto",
                     "type": "Button",
                     "id": "9163a226-9058-4809-b063-e0d059516f07",
                     "expectedControlType": "Button",
@@ -159,7 +167,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Turbo",
+                    "action": "Salto",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -170,7 +178,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Turbo",
+                    "action": "Salto",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -193,6 +201,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pausa",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91d1d551-a50e-419b-9f51-41e2aa7e0702",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cambio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1a315dd-a8cb-4d6f-9742-61fbae2774d4",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cambio",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

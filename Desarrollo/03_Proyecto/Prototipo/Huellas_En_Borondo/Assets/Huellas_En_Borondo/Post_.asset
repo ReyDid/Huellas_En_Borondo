@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Post_
   m_EditorClassIdentifier: 
   VignetteEnabled: 1
-  VignettePower: 0.66
+  VignettePower: 0.3
   VignetteCenter: {x: 0, y: 0.16}
   BlurEnabled: 0
   BlurRadius: 0.0002
@@ -37,7 +37,7 @@ MonoBehaviour:
   BloomBlurTextureResolutionDivider: 1
   BloomBlurIterations: 2
   FilterTextureResolutionDivider: 2.5
-  BloomIntensity: 3.1
-  BloomThreshold: 0.9
-  BloomSoftThreshold: 0.2
+  BloomIntensity: 0.6
+  BloomThreshold: 1.1
+  BloomSoftThreshold: 0.5
   BloomDebugView: 0

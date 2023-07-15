@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class Cntrl_Personaje : MonoBehaviour
@@ -8,6 +9,7 @@ public class Cntrl_Personaje : MonoBehaviour
     public float Tmp;
 
     [Header("General")]
+    public AudioMixer _Sonido;
     public GameObject _Personaje_1;
     [HideInInspector]
     public GameObject _Avatar_1;
@@ -58,6 +60,7 @@ public class Cntrl_Personaje : MonoBehaviour
 
     [Header("Referencias")]
     public Estado _Estado;
+    public Efectos _Efectos;
     public Interfaz2D _Interfaz2D;
     //
     public Cntrl_Entrada _Entrada;
@@ -67,10 +70,13 @@ public class Cntrl_Personaje : MonoBehaviour
     public class Estado
     {
         public bool P1_EnSuelo;
+        public bool P1_EnAire;
         public bool P1_Escala;
         public bool P2_EnSuelo;
+        public bool P2_EnAire;
         public bool P2_Escala;
         public bool PG_EnSuelo;
+        public bool PG_EnAire;
         public bool PG_Escala;
 
         public bool P1_FrCamino;
@@ -111,6 +117,11 @@ public class Cntrl_Personaje : MonoBehaviour
 
         public bool CmbrPersonaje;
 
+        public float Vlmn_MusicaZona;
+        public float ZnCl;
+        public float ZnMdlln;
+        public float ZnSBsl;
+
         [Header("Estado Personaje")]
         public string Personaje;
         public bool EnDash;
@@ -119,6 +130,41 @@ public class Cntrl_Personaje : MonoBehaviour
         public bool EnPausa;
         public bool EnJuego;
         public bool Fin;
+    }
+    [System.Serializable]
+    public class Efectos
+    {
+        [Header("Audio")]
+        public AudioSource MscZn_Cali;
+        public AudioSource MscZn_Medellin;
+        public AudioSource MscZn_SBasilio;
+        public AudioSource Cl_CorreP1;
+        public AudioSource Cl_CorreP2;
+        //
+        public AudioClip[] Huellas;
+        public AudioSource Accion_Alts;
+        public AudioSource Accion_Bjs;
+        public AudioClip Cmb_Dorotea;
+        public AudioClip Cmb_Benkos;
+        public AudioClip Dash_Drt;
+        public AudioClip Dash_Bnks;
+        public AudioClip Rayo;
+        public AudioClip Salto;
+        public AudioClip Impct_Cono;
+        public AudioClip Impct_Basura;
+        public AudioClip Impct_BtBasura;
+        public AudioClip _TpBsr;
+        public AudioClip Impct_Bloques;
+        public AudioClip _Blqs;
+        public AudioClip Impct_MrBloques;
+        public AudioClip Impct_Silla;
+        public AudioClip[] Rcg_MedallonHlls;
+        public AudioClip Rcg_Alfeñique;
+        public AudioClip _Cr;
+        public AudioClip Rcg_MtMedicinal;
+        public AudioClip _Rvv;
+        public AudioClip Rcg_Maceta;
+        public AudioClip Rcg_Letra;
     }
     [System.Serializable]
     public class Interfaz2D
@@ -195,16 +241,110 @@ public class Cntrl_Personaje : MonoBehaviour
         }
 
         Interfaz();
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
+=======
+        Acciones();
+        Animacion();
+        Audio();
+
+
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
         Time.timeScale = Tmp;
     }
 
 
     void Inicio()
     {
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
         _Estado.Auto = true;
         _Estado.Dsplzr = 1;
         _Estado.DsplzrG = 1;
         _Estado.Personaje = "Dorotea";
+=======
+        _Estado.Vlmn_MusicaZona = .3f;
+        _Estado.ZnCl = _Estado.Vlmn_MusicaZona;
+        _Efectos.MscZn_Cali.Play();
+        _Estado.ZnMdlln = 0;
+        _Estado.ZnSBsl = 0;
+
+
+        Palabra = "BORONDO";
+        Letras = 7;
+
+        _Estado.Cinematica = true;
+        //_Estado.Auto = true;
+        //_Estado.Dsplzr = 1;
+        //_Estado.DsplzrG = 1;
+        _Estado.Personaje = "Dorotea";
+        _Estado.Sld_Dorotea = 3;
+        _Estado.Sld_Benkos = 3;
+    }
+    public void Reinicio()
+    {
+        _Estado.ZnCl = _Estado.Vlmn_MusicaZona;
+        _Efectos.MscZn_Cali.Play();
+        _Estado.ZnMdlln = 0;
+        _Estado.ZnSBsl = 0;
+
+        Palabra = "BORONDO";
+        Letras = 7;
+
+        _Estado.EnCnmtc = false;
+        _Estado.FrzDash = 0;
+        _Personaje_1.transform.parent.localPosition = new Vector3(0, 0, -25);
+        _Personaje_1.transform.localPosition = new Vector3(0, .02f, 0);
+        _Personaje_2.transform.localPosition = new Vector3(-2, 1.48f, -2);
+        _Personaje_G.transform.localPosition = new Vector3(0, -1.11f, 4.84f);
+        _Avatar_1.transform.GetChild(1).localPosition = Vector3.zero;
+        _Avatar_2.transform.GetChild(1).localPosition = Vector3.zero;
+        _Avatar_G.transform.GetChild(1).localPosition = Vector3.zero;
+        switch (_Estado.Personaje)
+        {
+            case "Benkos":
+                GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
+                GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
+                Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
+                Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+
+                Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
+                Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.zero;
+                //
+                Pdr_Prsnj2.transform.GetChild(0).localRotation = Quaternion.identity;
+                Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.zero;
+
+                _Estado.Personaje = "Dorotea";
+                break;
+        }
+        frzrCambio = 0;
+        _Estado.EnLsn = false;
+        Pdr_Prsnj1.transform.GetChild(0).gameObject.SetActive(true);
+        Pdr_Prsnj2.transform.GetChild(0).gameObject.SetActive(true);
+        _Estado.Sld_Dorotea = 3;
+        _Estado.Sld_Benkos = 3;
+
+        //
+        _Estado.Dsplzr = 0;
+        _Estado.DsplzrG = 0;
+        PntObjtv = 0;
+        PntObjtvG = 0;
+
+        Maceta = false;
+        Letra = false;
+        Alfeñique = false;
+        MtMedicinal = false;
+        _Estado.ClclHlls_Mct = 0;
+        _Estado.ClclHlls_Ltr = 0;
+        _Estado.ClclHlls_MMdcnl = 0;
+        _Estado.Cntd_Huellas = 0;
+        _Estado.Cntd_Macetas = 0;
+        for (int i = 0; i < _Estado.Ttl_Letras.Count; i++)
+        {
+            _Estado.Ttl_Letras[i] = "";
+        }
+        
+
+        Revivir();
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
     }
     
 
@@ -568,7 +708,52 @@ public class Cntrl_Personaje : MonoBehaviour
                 _Estado.EnDash = true;
                 if (entrd_H < 0)
                 {
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
                     _Estado.FrzDash = -frzDsh;
+=======
+                    switch (_Estado.Personaje)
+                    {
+                        case "Dorotea":
+                            _Efectos.Accion_Alts.PlayOneShot(_Efectos.Dash_Drt);
+                            break;
+                        case "Benkos":
+                            _Efectos.Accion_Alts.PlayOneShot(_Efectos.Dash_Bnks);
+                            _Efectos.Accion_Alts.PlayOneShot(_Efectos.Rayo);
+                            break;
+                    }
+                    _Estado.EnDash = true;
+                    if (entrd_H < 0)
+                    {
+                        if (_Avatar_1.transform.GetChild(1).localPosition.x > 0)
+                        {
+                            _Estado.FrzDash = 0;
+                        }
+                        else
+                        {
+                            _Estado.FrzDash = -frzDsh;
+                        }
+                    }
+                    else if (entrd_H > 0)
+                    {
+                        if (_Avatar_1.transform.GetChild(1).localPosition.x < 0)
+                        {
+                            _Estado.FrzDash = 0;
+                        }
+                        else
+                        {
+                            _Estado.FrzDash = frzDsh;
+                        }
+                    }
+                    else
+                    {
+                        //_Estado.FrzDash = -frzDsh;
+                    }
+                    _Estado.DrccnDash = -1;
+                    LtrlDsh = ltrlDrch ? 1 : -1;
+                    _Estado.TmpEnfrAccn_ = .06f;
+
+                    _Estado.TmpDash = .01f;
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
                 }
                 else if (entrd_H > 0)
                 {
@@ -620,7 +805,23 @@ public class Cntrl_Personaje : MonoBehaviour
 
             if (entrd_H != 0)
             {
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
                 _Estado.MltplVlcd = Mathf.Lerp(_Estado.MltplVlcd, (100 * .6f) * Vlcd_Nivel, 4.4f * Time.deltaTime);
+=======
+                _Efectos.Accion_Alts.PlayOneShot(_Efectos.Salto);
+                switch (_Estado.Personaje)
+                {
+                    case "Dorotea":
+                        //
+                        break;
+                    case "Benkos":
+                        //
+                        break;
+                }
+                _Efectos.Accion_Alts.PlayOneShot(_Efectos.Dash_Bnks);
+                _Estado.EnSalto = true;
+                _Estado.TmpSalto = .24f;
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
             }
             else
             {
@@ -637,7 +838,26 @@ public class Cntrl_Personaje : MonoBehaviour
             {
                 if (_Estado.Personaje == "Dorotea")
                 {
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
                     _Estado.Personaje = "Benkos";
+=======
+                    if (_Estado.Personaje == "Dorotea")
+                    {
+                        _Efectos.Accion_Alts.PlayOneShot(_Efectos.Cmb_Benkos);
+                        _Estado.Personaje = "Benkos";
+                    }
+                    else if (_Estado.Personaje == "Benkos")
+                    {
+                        _Efectos.Accion_Alts.PlayOneShot(_Efectos.Cmb_Dorotea);
+                        _Estado.Personaje = "Dorotea";
+                    }
+                    GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
+                    GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
+                    Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
+                    Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+
+                    _Estado.CmbrPersonaje = true;
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
                 }
                 else if (_Estado.Personaje == "Benkos")
                 {
@@ -659,7 +879,77 @@ public class Cntrl_Personaje : MonoBehaviour
         Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
         Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.Lerp(Pdr_Prsnj1.transform.GetChild(0).localPosition, Vector3.zero, vlcdCmb * Time.deltaTime);
         Pdr_Prsnj2.transform.GetChild(0).localRotation = Quaternion.identity;
+<<<<<<< Updated upstream:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Jugador/Personaje/Cntrl_Personaje.cs
         Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.Lerp(Pdr_Prsnj2.transform.GetChild(0).localPosition, Vector3.zero, vlcdCmb * Time.deltaTime);
+=======
+        Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.MoveTowards(Pdr_Prsnj2.transform.GetChild(0).localPosition, new Vector3(ltrl, 0, dtrs), 
+            (vlcdCmb * 2) * Time.deltaTime);
+    }
+    //
+    void Pausa()
+    {
+        _Sonido.SetFloat("Vlmn_Efectos", 0);
+        _Sonido.SetFloat("Vlmn_Voces", 0);
+
+        CrpRgd_1.isKinematic = true;
+        CrpRgd_2.isKinematic = true;
+        CrpRgd_G.isKinematic = true;
+
+        _Estado.Auto = false;
+        Anmdr_Drt.speed = 0;
+        Anmdr_Bnks.speed = 0;
+        Anmdr_Aml.speed = 0;
+    }
+    void Perder()
+    {
+        _Sonido.SetFloat("Vlmn_Efectos", 0);
+        _Sonido.SetFloat("Vlmn_Voces", 0);
+
+        CrpRgd_1.isKinematic = true;
+        CrpRgd_2.isKinematic = true;
+        CrpRgd_G.isKinematic = true;
+
+        _Estado.Auto = false;
+        _Estado.Dsplzr = 0;
+        _Estado.DsplzrG = 0;
+    }
+    void Reanudar()
+    {
+        _Sonido.SetFloat("Vlmn_Efectos", 1);
+        _Sonido.SetFloat("Vlmn_Voces", 1);
+
+        if (!_Estado.Cinematica)
+        {
+            CrpRgd_1.isKinematic = false;
+            CrpRgd_2.isKinematic = false;
+            CrpRgd_G.isKinematic = false;
+
+            _Estado.Auto = true;
+            _Estado.Dsplzr = 1;
+            if (PntObjtvG != Pnts_Rcrrd.transform.childCount - 1)
+            {
+                _Estado.DsplzrG = 1;
+            }
+        }
+        else
+        {
+            CrpRgd_1.isKinematic = true;
+            CrpRgd_2.isKinematic = true;
+            CrpRgd_G.isKinematic = true;
+        }
+
+        Anmdr_Drt.speed = 1;
+        Anmdr_Bnks.speed = 1;
+        Anmdr_Aml.speed = 1;
+    }
+    void Revivir()
+    {
+        _Estado.Fin = false;
+    }
+    void Ganar()
+    {
+
+>>>>>>> Stashed changes:Desarrollo/03_Proyecto/Prototipo/Huellas_En_Borondo/Assets/Huellas_En_Borondo/Codigo/Partida/Jugador/Personaje/Cntrl_Personaje.cs
     }
 
 
@@ -704,5 +994,36 @@ public class Cntrl_Personaje : MonoBehaviour
         ltrlAml = Mathf.Lerp(ltrlAml, Ltrl, 2.36f * Time.deltaTime);
         A_PrsnjG.SetBool("EnMovimiento", _Estado.DsplzrG > 0);
         A_PrsnjG.SetFloat("Lateral", ltrlAml);
+    }
+    void Audio()
+    {
+        // Musica
+        if (_Estado.EnPlbr)
+        {
+            _Sonido.SetFloat("Vlmn_Musica", .84f);
+        }
+        else
+        {
+            _Sonido.SetFloat("Vlmn_Musica", 1);
+        }
+        float vlcdCmbZn = .66f;
+        _Efectos.MscZn_Cali.volume = Mathf.Lerp(_Efectos.MscZn_Cali.volume, _Estado.ZnCl, vlcdCmbZn * Time.deltaTime);
+        _Efectos.MscZn_Medellin.volume = Mathf.Lerp(_Efectos.MscZn_Medellin.volume, _Estado.ZnMdlln, vlcdCmbZn * Time.deltaTime);
+        _Efectos.MscZn_SBasilio.volume = Mathf.Lerp(_Efectos.MscZn_SBasilio.volume, _Estado.ZnSBsl, vlcdCmbZn * Time.deltaTime);
+
+        // Efectos
+        if (_Estado.Dsplzr > 0)
+        {
+            if (_Estado.P1_EnSuelo)
+            {
+                _Efectos.Cl_CorreP1.gameObject.SetActive(_Estado.Dsplzr > 0);
+                _Efectos.Cl_CorreP2.gameObject.SetActive(_Efectos.Cl_CorreP1.gameObject.activeInHierarchy && !_Estado.EnLsn);
+            }
+        }
+        else
+        {
+            _Efectos.Cl_CorreP1.gameObject.SetActive(false);
+            _Efectos.Cl_CorreP2.gameObject.SetActive(false);
+        }
     }
 }

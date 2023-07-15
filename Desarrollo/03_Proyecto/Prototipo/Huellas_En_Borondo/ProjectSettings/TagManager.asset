@@ -13,6 +13,21 @@ TagManager:
   - Rcrrd_Cali
   - Rcrrd_SanBalisio
   - Rcrrd_Medellin
+<<<<<<< Updated upstream
+=======
+  - Trnsprt
+  - Prm
+  - PntGrdr
+  - Hll
+  - Mct
+  - Ltr
+  - ClccnH
+  - "Alf\xF1q"
+  - MMdcnl
+  - ZnCl
+  - ZnMdlln
+  - ZnSBsl
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -20,7 +35,7 @@ TagManager:
   - NoCmr
   - Water
   - UI
-  - 
+  - Zona
   - 
   - 
   - 

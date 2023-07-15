@@ -44,6 +44,16 @@ public class Cntrl_Partida : MonoBehaviour
         {
             _DatosSstm.ID_Sstm = "";
         }
+<<<<<<< Updated upstream
+=======
+
+        if (!Inicio)
+        {
+            _Camara.mltpl_VlcdMvmntGnrl = 1;
+            Reanuda = true;
+            Estd_Cinematica = 1;
+        }
+>>>>>>> Stashed changes
     }
     // Update is called once per frame
     void Update()
@@ -129,6 +139,8 @@ public class Cntrl_Partida : MonoBehaviour
                     _TmpEntradas.pntllCmplt = false;
                 }
             }
+
+            Cinematicas();
         }
         else
         {

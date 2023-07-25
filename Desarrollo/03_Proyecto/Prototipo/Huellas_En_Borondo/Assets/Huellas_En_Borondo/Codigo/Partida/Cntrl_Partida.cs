@@ -24,6 +24,7 @@ public class Cntrl_Partida : MonoBehaviour
     //
     public Dts_Sistema _DatosSstm;
     public Cntrl_Personaje _Personaje;
+    public Cntrl_Villano _Villano;
     public Cntrl_Camara _Camara;
     public Cntrl_Cinematica _Cinematica;
     public Cntrl_Instanciado _Instanciado;
@@ -96,6 +97,8 @@ public class Cntrl_Partida : MonoBehaviour
             // Cinematica Camara
             if (_Personaje._Estado.Dsplzr <= 0)
             {
+                _Villano.Accion = false;
+
                 _Camara.VlcdR = 3.3f;
                 _Camara._Encuadre.Angl_X = 40;
                 _Camara._Encuadre.Angl_Y = 0;
@@ -107,6 +110,23 @@ public class Cntrl_Partida : MonoBehaviour
             {
                 if (_Camara.Cinematica)
                 {
+                    if (_Personaje._Estado.TpCnmtc == "Accion" || _Personaje._Estado.TpCnmtc == "Curva" || _Personaje._Estado.TpCnmtc == "AtaqueT")
+                    {
+                        _Villano.Accion = true;
+                        if (_Personaje._Estado.TpCnmtc == "AtaqueT")
+                        {
+                            _Villano.Atacando = true;
+                        }
+                        else
+                        {
+                            _Villano.Atacando = false;
+                        }
+                    }
+                    else
+                    {
+                        _Villano.Accion = false;
+                        _Villano.Atacando = false;
+                    }
                     switch (_Personaje._Estado.TpCnmtc)
                     {
                         case "Curva":
@@ -131,12 +151,22 @@ public class Cntrl_Partida : MonoBehaviour
                 }
                 else
                 {
+                    _Villano.Accion = false;
+
                     _Camara.VlcdR = 3.3f;
                     _Camara._Encuadre.Angl_X = 40;
                     _Camara._Encuadre.Angl_Y = 0;
                     //
-                    _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
-                    _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
+                    if (!Cntrl_Villano.Confrontacion)
+                    {
+                        _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -55.1f, 2.5f * Time.deltaTime);
+                        _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 22.1f, 2.5f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        _Camara.PscnZ = Mathf.Lerp(_Camara.PscnZ, -38f, .8f * Time.deltaTime);
+                        _Camara.pscnY = Mathf.Lerp(_Camara.pscnY, 33.3f, 1.1f * Time.deltaTime);
+                    }
                 }
             }
         }

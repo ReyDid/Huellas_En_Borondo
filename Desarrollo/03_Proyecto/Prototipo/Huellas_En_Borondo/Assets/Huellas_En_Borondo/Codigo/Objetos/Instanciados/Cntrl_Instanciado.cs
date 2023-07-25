@@ -13,6 +13,7 @@ public class Cntrl_Instanciado : MonoBehaviour
     //public GameObject _Premios;
 
     [Header("Composicion")]
+    public Instncd_Transporte[] InstncdTrnsprt;
     public Transform[] _Instncds;
     public int Instncd_Crcn;
     public int Instncd_Vld;
@@ -57,7 +58,7 @@ public class Cntrl_Instanciado : MonoBehaviour
         }
         else
         {
-            if (_DstnscInstncds[Instncd_Crcn] <= 62 && !_Instncds[Instncd_Crcn].gameObject.activeInHierarchy)
+            if (_DstnscInstncds[Instncd_Crcn] <= 40 && !_Instncds[Instncd_Crcn].gameObject.activeInHierarchy)
             {
                 Instncd_Vld++;
                 _Instncds[Instncd_Crcn].gameObject.SetActive(true);
@@ -96,6 +97,18 @@ public class Cntrl_Instanciado : MonoBehaviour
         for (int i = 0; i < _AlmacenObjetos.Sillas.Length; i++)
         {
             _AlmacenObjetos.Sillas[i].Destruir();
+        }
+        for (int i = 0; i < _AlmacenObjetos.Piedras.Length; i++)
+        {
+            _AlmacenObjetos.Piedras[i].Destruir();
+        }
+        for (int i = 0; i < _AlmacenObjetos.Cocodrilos.Length; i++)
+        {
+            _AlmacenObjetos.Cocodrilos[i].Destruir();
+        }
+        for (int i = 0; i < _AlmacenObjetos.Troncos.Length; i++)
+        {
+            _AlmacenObjetos.Troncos[i].Destruir();
         }
         for (int i = 0; i < _AlmacenObjetos.Macetas.Length; i++)
         {
@@ -141,6 +154,10 @@ public class Cntrl_Instanciado : MonoBehaviour
             }
 
             _Instncds[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < InstncdTrnsprt.Length; i++)
+        {
+            InstncdTrnsprt[i].Reinicio();
         }
 
         // Orden de Instanciado

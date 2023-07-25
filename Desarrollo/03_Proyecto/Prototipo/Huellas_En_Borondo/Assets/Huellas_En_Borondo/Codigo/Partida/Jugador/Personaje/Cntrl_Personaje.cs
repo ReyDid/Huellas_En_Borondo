@@ -6,6 +6,7 @@ using TMPro;
 
 public class Cntrl_Personaje : MonoBehaviour
 {
+    public static bool Sentado;
     public static bool Maceta;
     public static bool Letra;
     public static string Palabra;
@@ -14,6 +15,7 @@ public class Cntrl_Personaje : MonoBehaviour
     public static bool MtMedicinal;
     public static bool SuperHuella;
     public float Tmp;
+    float tmp;
 
     [Header("General")]
     public AudioMixer _Sonido;
@@ -33,6 +35,8 @@ public class Cntrl_Personaje : MonoBehaviour
     float entrd_Salto;
     float entrd_Cambio;
     float frzrCambio;
+    //
+    public Instncd_Transporte _Transporte;
 
     [Header("Composicion")]
     public int TmñMxm;
@@ -84,6 +88,7 @@ public class Cntrl_Personaje : MonoBehaviour
         public bool P2_EnSuelo;
         public bool P2_EnAire;
         public bool P2_Escala;
+        public bool PG_Vuelo;
         public bool PG_EnSuelo;
         public bool PG_EnAire;
         public bool PG_Escala;
@@ -91,6 +96,8 @@ public class Cntrl_Personaje : MonoBehaviour
         public bool P1_FrCamino;
         public bool P2_FrCamino;
         public bool PG_FrCamino;
+        public Vector3 DstncVl;
+        public int EstdVl;
 
         [HideInInspector]
         public float FrzGrvd_P1;
@@ -145,6 +152,9 @@ public class Cntrl_Personaje : MonoBehaviour
         [HideInInspector]
         public int Cntd_Macetas;
 
+        public int Estd_Impacto;
+        public float TmpImpct;
+
         public float Vlmn_MusicaZona;
         public float ZnCl;
         public float ZnMdlln;
@@ -154,12 +164,18 @@ public class Cntrl_Personaje : MonoBehaviour
         public string Personaje;
         public int Sld_Dorotea;
         public int Sld_Benkos;
+        public bool BloqueoCntrl;
         public bool Invertido;
         public bool EnLsn;
         public bool EnDash;
         public bool EnSalto;
+        public bool EnParacaidas;
         public bool EnCnmtc;
         public bool EnPlbr;
+        public bool EnTrnsprt;
+        public bool Chiva;
+        public bool Canasto;
+        public bool Canoa;
         [HideInInspector]
         public string TpCnmtc;
         [HideInInspector]
@@ -250,57 +266,63 @@ public class Cntrl_Personaje : MonoBehaviour
 
         if (_Estado.Auto)
         {
-            if (_Estado.Invertido)
+            if (!_Estado.BloqueoCntrl)
             {
-                entrd_H = -_Entrada.Dsplzmnt_H;
-            }
-            else
-            {
-                entrd_H = _Entrada.Dsplzmnt_H;
-            }
-            entrd_V = _Entrada.Dspzmnt_V;
-            entrd_Salto = _Entrada.Salto;
-            if (entrd_H != 0)
-            {
-                entrd_Dash = 1;
-            }
-            else
-            {
-                entrd_Dash = 0;
-            }
-            if (_Estado.Sld_Dorotea > 0 && _Estado.Sld_Benkos > 0)
-            {
-                if (!_Estado.EnLsn)
+                if (_Estado.Invertido)
                 {
-                    entrd_Cambio = _Entrada.Cambio;
-                }
-            }
-            else// Cambio de emergencia
-            {
-                if (!_Estado.EnLsn)
-                {
-                    switch (_Estado.Personaje)
-                    {
-                        case "Dorotea":
-                            if (_Estado.Sld_Dorotea <= 0)
-                            {
-                                frzrCambio = 1;
-                            }
-                            break;
-                        case "Benkos":
-                            if (_Estado.Sld_Benkos <= 0)
-                            {
-                                frzrCambio = 1;
-                            }
-                            break;
-                    }
+                    entrd_H = -_Entrada.Dsplzmnt_H;
                 }
                 else
                 {
-                    frzrCambio = 0;
+                    entrd_H = _Entrada.Dsplzmnt_H;
                 }
+                entrd_V = _Entrada.Dspzmnt_V;
+                entrd_Salto = _Entrada.Salto;
+                if (entrd_H != 0)
+                {
+                    entrd_Dash = 1;
+                }
+                else
+                {
+                    entrd_Dash = 0;
+                }
+                if (_Estado.Sld_Dorotea > 0 && _Estado.Sld_Benkos > 0)
+                {
+                    if (!_Estado.EnLsn)
+                    {
+                        entrd_Cambio = _Entrada.Cambio;
+                    }
+                }
+                else// Cambio de emergencia
+                {
+                    if (!_Estado.EnLsn)
+                    {
+                        if (!_Estado.EnTrnsprt)
+                        {
+                            switch (_Estado.Personaje)
+                            {
+                                case "Dorotea":
+                                    if (_Estado.Sld_Dorotea <= 0)
+                                    {
+                                        frzrCambio = 1;
+                                    }
+                                    break;
+                                case "Benkos":
+                                    if (_Estado.Sld_Benkos <= 0)
+                                    {
+                                        frzrCambio = 1;
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        frzrCambio = 0;
+                    }
 
-                _Estado.EnLsn = true;
+                    _Estado.EnLsn = true;
+                }
             }
         }
     }
@@ -408,22 +430,27 @@ public class Cntrl_Personaje : MonoBehaviour
         Audio();
 
 
-        Time.timeScale = Tmp;
+        Time.timeScale = tmp;
     }
 
 
     void Inicio()
     {
+        tmp = Tmp;
+        Sentado = true;
+
         _Estado.Vlmn_MusicaZona = .3f;
         _Estado.ZnCl = _Estado.Vlmn_MusicaZona;
         _Efectos.MscZn_Cali.Play();
         _Estado.ZnMdlln = 0;
         _Estado.ZnSBsl = 0;
 
+        _Estado.EnSalto = false;
 
         Palabra = "BORONDO";
         Letras = 7;
 
+        _Transporte = null;
         _Estado.Cinematica = true;
         //_Estado.Auto = true;
         //_Estado.Dsplzr = 1;
@@ -434,6 +461,12 @@ public class Cntrl_Personaje : MonoBehaviour
     }
     public void Reinicio()
     {
+        tmp = Tmp;
+        Anmdr_Drt.Rebind(); Anmdr_Bnks.Rebind(); Anmdr_Aml.Rebind();
+        //Anmdr_Drt.Update(0f); Anmdr_Bnks.Update(0f); Anmdr_Aml.Update(0f);
+
+        Sentado = true;
+
         _Estado.ZnCl = _Estado.Vlmn_MusicaZona;
         _Efectos.MscZn_Cali.Play();
         _Estado.ZnMdlln = 0;
@@ -442,6 +475,7 @@ public class Cntrl_Personaje : MonoBehaviour
         Palabra = "BORONDO";
         Letras = 7;
 
+        _Transporte = null;
         _Estado.EnCnmtc = false;
         _Estado.FrzDash = 0;
         _Personaje_1.transform.parent.localPosition = new Vector3(0, 0, -25);
@@ -451,22 +485,29 @@ public class Cntrl_Personaje : MonoBehaviour
         _Avatar_1.transform.GetChild(1).localPosition = Vector3.zero;
         _Avatar_2.transform.GetChild(1).localPosition = Vector3.zero;
         _Avatar_G.transform.GetChild(1).localPosition = Vector3.zero;
-        switch (_Estado.Personaje)
+        if (!_Estado.EnTrnsprt)
         {
-            case "Benkos":
-                GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
-                GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
-                Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
-                Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+            switch (_Estado.Personaje)
+            {
+                case "Benkos":
+                    GameObject prsnj1 = Pdr_Prsnj2.transform.GetChild(1).gameObject;
+                    GameObject prsnj2 = Pdr_Prsnj1.transform.GetChild(1).gameObject;
+                    GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
+                    GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
+                    Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
+                    Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+                    prsnj1.transform.parent = Pdr_Prsnj1.transform;
+                    prsnj2.transform.parent = Pdr_Prsnj2.transform;
 
-                Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
-                Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.zero;
-                //
-                Pdr_Prsnj2.transform.GetChild(0).localRotation = Quaternion.identity;
-                Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.zero;
+                    Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
+                    Pdr_Prsnj1.transform.GetChild(0).localPosition = Vector3.zero;
+                    //
+                    Pdr_Prsnj2.transform.GetChild(0).localRotation = Quaternion.identity;
+                    Pdr_Prsnj2.transform.GetChild(0).localPosition = Vector3.zero;
 
-                _Estado.Personaje = "Dorotea";
-                break;
+                    _Estado.Personaje = "Dorotea";
+                    break;
+            }
         }
         frzrCambio = 0;
         _Estado.EnLsn = false;
@@ -494,9 +535,15 @@ public class Cntrl_Personaje : MonoBehaviour
         {
             _Estado.Ttl_Letras[i] = "";
         }
+        _Estado.EnTrnsprt = false;
+        _Estado.Chiva = false;
+        _Estado.Canasto = false;
+        _Estado.Canoa = false;
         
 
         Revivir();
+
+        Cntrl_Villano.Reiniciar = true;
     }
 
     void Gravedad()
@@ -553,22 +600,60 @@ public class Cntrl_Personaje : MonoBehaviour
             _Estado.FrzGrvd_P2 = Mathf.MoveTowards(_Estado.FrzGrvd_P2, frzSlt, (vlcdG * 1.1f) * Time.deltaTime);
         }
         //
-        if (_Estado.PG_EnSuelo)
+        if (!_Estado.PG_Vuelo)
         {
-            _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, 0, vlcdG * Time.deltaTime);
-            //_Estado.FrzGrvd_PG = 0;
-        }
-        else
-        {
-            if (_Estado.PG_Escala)
+            if (_Estado.PG_EnSuelo)
             {
-                _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, frzEscl, (vlcdG * 1.1f) * Time.deltaTime);
-                //_Estado.FrzGrvd_PG = frzEscl;
+                _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, 0, vlcdG * Time.deltaTime);
+                //_Estado.FrzGrvd_PG = 0;
             }
             else
             {
-                _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -frzGrvd, (vlcdG * .9f) * Time.deltaTime);
-                //_Estado.FrzGrvd_PG = -frzGrvd;
+                if (_Estado.PG_Escala)
+                {
+                    _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, frzEscl, (vlcdG * 1.1f) * Time.deltaTime);
+                    //_Estado.FrzGrvd_PG = frzEscl;
+                }
+                else
+                {
+                    _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -frzGrvd, (vlcdG * .9f) * Time.deltaTime);
+                    //_Estado.FrzGrvd_PG = -frzGrvd;
+                }
+            }
+        }
+        else
+        {
+            float AltrMnm_Vl = 7;
+            float AltrMxm_Vl = 9.6f;
+            float DstncSl = Vector3.Distance(new Vector3(0, _Personaje_G.transform.position.y, 0), new Vector3(0, _Estado.DstncVl.y, 0));
+
+            if (DstncSl > AltrMxm_Vl)
+            {
+                _Estado.EstdVl = -1;
+            }
+            else
+            {
+                if (DstncSl > AltrMnm_Vl)
+                {
+                    _Estado.EstdVl = 0;
+                }
+                else
+                {
+                    _Estado.EstdVl = 1;
+                }
+            }
+            //
+            switch (_Estado.EstdVl)
+            {
+                case -1:
+                    _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -(frzGrvd * 1.11f), (vlcdG * .5f) * Time.deltaTime);
+                    break;
+                case 0:
+                    _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, -(frzGrvd * .2f), (vlcdG * 8.8f) * Time.deltaTime);
+                    break;
+                case 1:
+                    _Estado.FrzGrvd_PG = Mathf.MoveTowards(_Estado.FrzGrvd_PG, (frzGrvd * .4f), (vlcdG * 5.5f) * Time.deltaTime);
+                    break;
             }
         }
     }
@@ -689,7 +774,7 @@ public class Cntrl_Personaje : MonoBehaviour
         else
         {
             //
-            if (_Avatar_G.transform.GetChild(1).transform.localPosition.x < 6)
+            if (_Avatar_G.transform.GetChild(1).transform.localPosition.x < 9.6)
             {
                 _Avatar_G.transform.GetChild(1).localPosition += new Vector3(((Vlcd * .01f) * Time.deltaTime) + (_Estado.FrzDash * Time.deltaTime), 0, 0);
             }
@@ -762,7 +847,7 @@ public class Cntrl_Personaje : MonoBehaviour
         float v = 0;
         if (dstncSgdr > 16)
         {
-            v = Vlcd * 2;
+            v = Vlcd * 1.4f;
         }
         else
         {
@@ -788,20 +873,67 @@ public class Cntrl_Personaje : MonoBehaviour
     {
         // Velocidad Del Nivel
         float Vlcd_Nivel = 1;
+        if (_Estado.EnTrnsprt)
+        {
+            if (_Estado.Chiva)
+            {
+                tmp = Tmp * 1.18f;
+            }
+            if (_Estado.Canasto)
+            {
+                tmp = Tmp * 1.3f;
+            }
+            if (_Estado.Canoa)
+            {
+                tmp = Tmp * .66f;
+            }
+        }
+        else
+        {
+            if (Cntrl_Villano.Confrontacion)
+            {
+                tmp = Tmp * .86f;
+            }
+            else
+            {
+                tmp = Tmp;
+            }
+        }
 
 
         // Dash
         float frzDsh = 6;
         float tmpDsh = .2f;
-        if (_Estado.Personaje == "Dorotea")
+        if (_Estado.EnTrnsprt)
         {
-            _Estado.VlcdDash = 6.6f;
-            tmpDsh = .2f;
+            if (_Estado.Chiva)
+            {
+                _Estado.VlcdDash = 2.5f;
+                tmpDsh = .2f;
+            }
+            else if (_Estado.Canasto)
+            {
+                _Estado.VlcdDash = 3.3f;
+                tmpDsh = .2f;
+            }
+            else if (_Estado.Canoa)
+            {
+                _Estado.VlcdDash = 2.5f;
+                tmpDsh = .2f;
+            }
         }
-        else if (_Estado.Personaje == "Benkos")
+        else
         {
-            _Estado.VlcdDash = 30.5f;
-            tmpDsh = .08f;
+            if (_Estado.Personaje == "Dorotea")
+            {
+                _Estado.VlcdDash = 6.6f;
+                tmpDsh = .2f;
+            }
+            else if (_Estado.Personaje == "Benkos")
+            {
+                _Estado.VlcdDash = 30.5f;
+                tmpDsh = .08f;
+            }
         }
         //
         if (entrd_H > 0)
@@ -919,12 +1051,12 @@ public class Cntrl_Personaje : MonoBehaviour
                 }
                 _Efectos.Accion_Alts.PlayOneShot(_Efectos.Dash_Bnks);
                 _Estado.EnSalto = true;
-                _Estado.TmpSalto = .24f;
+                _Estado.TmpSalto = .277f;
             }
         }
         else
         {
-            if (!_Estado.EnSalto)
+            if (!_Estado.EnSalto && !_Estado.P1_EnAire)
             {
                 _Estado.TmpSalto = 0;
             }
@@ -940,9 +1072,21 @@ public class Cntrl_Personaje : MonoBehaviour
         }
 
 
+        // Impacto
+        if (_Estado.TmpImpct > 0)
+        {
+            Time.timeScale = .2f;
+            _Estado.TmpImpct -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            _Estado.Estd_Impacto = 0;
+        }
+
         // Cambio de Personaje
         float vlcdCmb = 2;
-        if (entrd_Cambio > 0 || frzrCambio > 0)
+        if ((entrd_Cambio > 0 || frzrCambio > 0) && (!_Estado.EnTrnsprt))
         {
             if ((frzrCambio > 0) || (frzrCambio <= 0 && _Estado.TmpEnfrAccn_ <= 0 && _Estado.TmpEnfrCmb_ == 0))
             {
@@ -958,10 +1102,14 @@ public class Cntrl_Personaje : MonoBehaviour
                         _Efectos.Accion_Alts.PlayOneShot(_Efectos.Cmb_Dorotea);
                         _Estado.Personaje = "Dorotea";
                     }
+                    GameObject prsnj1 = Pdr_Prsnj2.transform.GetChild(1).gameObject;
+                    GameObject prsnj2 = Pdr_Prsnj1.transform.GetChild(1).gameObject;
                     GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
                     GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
                     Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
                     Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+                    prsnj1.transform.parent = Pdr_Prsnj1.transform;
+                    prsnj2.transform.parent = Pdr_Prsnj2.transform;
 
                     _Estado.CmbrPersonaje = true;
                 }
@@ -1027,6 +1175,8 @@ public class Cntrl_Personaje : MonoBehaviour
         Anmdr_Drt.speed = 0;
         Anmdr_Bnks.speed = 0;
         Anmdr_Aml.speed = 0;
+
+        Cntrl_Villano.Pausar = true;
     }
     void Perder()
     {
@@ -1040,6 +1190,8 @@ public class Cntrl_Personaje : MonoBehaviour
         _Estado.Auto = false;
         _Estado.Dsplzr = 0;
         _Estado.DsplzrG = 0;
+
+        Cntrl_Villano.Triunfar = true;
     }
     void Reanudar()
     {
@@ -1069,6 +1221,8 @@ public class Cntrl_Personaje : MonoBehaviour
         Anmdr_Drt.speed = 1;
         Anmdr_Bnks.speed = 1;
         Anmdr_Aml.speed = 1;
+
+        Cntrl_Villano.Pausar = false;
     }
     void Revivir()
     {
@@ -1106,19 +1260,35 @@ public class Cntrl_Personaje : MonoBehaviour
         }
 
         // Personaje 1
+        A_Prsnj1.SetBool("EnChiva", _Estado.EnTrnsprt && _Estado.Chiva && Sentado);
+        A_Prsnj1.SetBool("EnCanasto", _Estado.EnTrnsprt && _Estado.Canasto);
+        A_Prsnj1.SetBool("EnCanoa", _Estado.EnTrnsprt && _Estado.Canoa);
+        A_Prsnj1.SetBool("Paracaidas", _Estado.EnParacaidas);
+        A_Prsnj1.SetBool("EnSuelo", _Estado.P1_EnSuelo);
         A_Prsnj1.SetBool("EnMovimiento", _Estado.Dsplzr > 0);
         A_Prsnj1.SetFloat("Lateral", Ltrl);
         A_Prsnj1.SetFloat("DrccnDash", _Estado.DrccnDash);
         A_Prsnj1.SetFloat("LtrlDash", LtrlDsh);
+        A_Prsnj1.SetBool("Salto", _Estado.EnSalto);
+        A_Prsnj1.SetInteger("Impacto", _Estado.Estd_Impacto);
 
         // Personaje 2
+        A_Prsnj2.SetBool("EnChiva", _Estado.EnTrnsprt && _Estado.Chiva && Sentado);
+        A_Prsnj2.SetBool("EnCanasto", _Estado.EnTrnsprt && _Estado.Canasto);
+        A_Prsnj2.SetBool("EnCanoa", _Estado.EnTrnsprt && _Estado.Canoa);
+        A_Prsnj2.SetBool("Paracaidas", _Estado.EnParacaidas);
+        A_Prsnj2.SetBool("EnSuelo", _Estado.P2_EnSuelo);
         A_Prsnj2.SetBool("EnMovimiento", _Estado.Dsplzr > 0);
         A_Prsnj2.SetFloat("Lateral", Ltrl);
         A_Prsnj2.SetFloat("DrccnDash", 0);
         A_Prsnj2.SetFloat("LtrlDash", LtrlDsh);
+        A_Prsnj2.SetBool("Salto", _Estado.EnSalto);
+        A_Prsnj2.SetInteger("Impacto", 0);
 
         // Personaje Guia
+        A_PrsnjG.SetBool("EnChiva", _Estado.EnTrnsprt && _Estado.Chiva && Sentado);
         ltrlAml = Mathf.Lerp(ltrlAml, Ltrl, 2.36f * Time.deltaTime);
+        A_PrsnjG.SetBool("Vuelo", _Estado.PG_Vuelo);
         A_PrsnjG.SetBool("EnMovimiento", _Estado.DsplzrG > 0);
         A_PrsnjG.SetFloat("Lateral", ltrlAml);
     }

@@ -25,6 +25,10 @@ TagManager:
   - ZnCl
   - ZnMdlln
   - ZnSBsl
+  - Pdr_Estn
+  - Pdr_Nb
+  - Agtr_Vlln
+  - Pdr_Dvsn
   layers:
   - Default
   - TransparentFX
@@ -41,9 +45,9 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Cnfrntcn_Vlln
   - Villano
-  - 
+  - Poder_Vlln
   - 
   - 
   - 
@@ -57,7 +61,7 @@ TagManager:
   - Solido
   - Liquido
   - Escalar
-  - 
+  - Transporte
   m_SortingLayers:
   - name: Default
     uniqueID: 0

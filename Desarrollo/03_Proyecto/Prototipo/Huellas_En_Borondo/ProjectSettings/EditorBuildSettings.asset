@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Huellas_En_Borondo/Escena/Inicio.unity
     guid: 2289b8cfef9ab4e448d747ce3921c0a5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Huellas_En_Borondo/Escena/Testeo.unity
     guid: b6052b259907d6d4faedf9364911f064
-  - enabled: 1
+  - enabled: 0
     path: Assets/Huellas_En_Borondo/Escena/New Scene.unity
     guid: 6aba273184c1960459a635673913247e
   m_configObjects: {}

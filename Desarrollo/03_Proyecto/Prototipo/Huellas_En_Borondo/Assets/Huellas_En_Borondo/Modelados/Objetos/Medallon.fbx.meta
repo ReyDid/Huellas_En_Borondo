@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MAT_Huellas
-    second: {fileID: 2100000, guid: e3c7d0ef69f031e499801e8be893f582, type: 2}
+    second: {fileID: 2100000, guid: f8909610718a99c4eb94d4a1871d88b4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

@@ -15,6 +15,9 @@ public class Almcn_Objetos : MonoBehaviour
     public GameObject Cj_Bloques;
     public GameObject Cj_MuroBloques;
     public GameObject Cj_Silla;
+    public GameObject Cj_Piedra;
+    public GameObject Cj_Cocodrilo;
+    public GameObject Cj_Tronco;
     public GameObject Cj_Maceta;
     public GameObject Cj_Letra;
     public GameObject Cj_ColeccionHlls;
@@ -31,6 +34,9 @@ public class Almcn_Objetos : MonoBehaviour
     public Cntrl_Objetos _Bloques;
     public Cntrl_Objetos _MuroBloques;
     public Cntrl_Objetos _Silla;
+    public Cntrl_Objetos _Piedra;
+    public Cntrl_Objetos _Cocodrilo;
+    public Cntrl_Objetos _Tronco;
     public Cntrl_Objetos _Maceta;
     public Cntrl_Objetos _Letra;
     public Cntrl_Objetos _ColeccionHlls;
@@ -55,6 +61,12 @@ public class Almcn_Objetos : MonoBehaviour
     public Cntrl_Objetos[] MurosBloques;
     public int Cntd_Slls;
     public Cntrl_Objetos[] Sillas;
+    public int Cntd_Pdrs;
+    public Cntrl_Objetos[] Piedras;
+    public int Cntd_Cdrls;
+    public Cntrl_Objetos[] Cocodrilos;
+    public int Cntd_Trncs;
+    public Cntrl_Objetos[] Troncos;
     public int Cntd_Mcts;
     public Cntrl_Objetos[] Macetas;
     public int Cntd_Ltrs;
@@ -78,6 +90,26 @@ public class Almcn_Objetos : MonoBehaviour
             //
             Chiva = Objt.GetComponent<Cntrl_Objetos>();
             Chiva.gameObject.SetActive(false);
+        }
+        if (Canastos == null)
+        {
+            GameObject Objt = Instantiate(_Canastos.gameObject);
+            Objt.transform.parent = Cj_Transportes.transform;
+            Objt.transform.position = Cj_Transportes.transform.position;
+            Objt.name = _Canastos.name;
+            //
+            Canastos = Objt.GetComponent<Cntrl_Objetos>();
+            Canastos.gameObject.SetActive(false);
+        }
+        if (Canoa == null)
+        {
+            GameObject Objt = Instantiate(_Canoa.gameObject);
+            Objt.transform.parent = Cj_Transportes.transform;
+            Objt.transform.position = Cj_Transportes.transform.position;
+            Objt.name = _Canoa.name;
+            //
+            Canoa = Objt.GetComponent<Cntrl_Objetos>();
+            Canoa.gameObject.SetActive(false);
         }
 
         Huellas = new Cntrl_Objetos[Cntd_Hlls];
@@ -162,6 +194,42 @@ public class Almcn_Objetos : MonoBehaviour
 
             Sillas[i] = Objt.GetComponent<Cntrl_Objetos>();
             Sillas[i].gameObject.SetActive(false);
+        }
+
+        Piedras = new Cntrl_Objetos[Cntd_Pdrs];
+        for (int i = 0; i < Cntd_Pdrs; i++)
+        {
+            GameObject Objt = Instantiate(_Piedra.gameObject);
+            Objt.transform.parent = Cj_Piedra.transform;
+            Objt.transform.position = Cj_Piedra.transform.position;
+            Objt.name = _Piedra.name;
+
+            Piedras[i] = Objt.GetComponent<Cntrl_Objetos>();
+            Piedras[i].gameObject.SetActive(false);
+        }
+
+        Cocodrilos = new Cntrl_Objetos[Cntd_Cdrls];
+        for (int i = 0; i < Cntd_Cdrls; i++)
+        {
+            GameObject Objt = Instantiate(_Cocodrilo.gameObject);
+            Objt.transform.parent = Cj_Cocodrilo.transform;
+            Objt.transform.position = Cj_Cocodrilo.transform.position;
+            Objt.name = _Cocodrilo.name;
+
+            Cocodrilos[i] = Objt.GetComponent<Cntrl_Objetos>();
+            Cocodrilos[i].gameObject.SetActive(false);
+        }
+
+        Troncos = new Cntrl_Objetos[Cntd_Trncs];
+        for (int i = 0; i < Cntd_Trncs; i++)
+        {
+            GameObject Objt = Instantiate(_Tronco.gameObject);
+            Objt.transform.parent = Cj_Tronco.transform;
+            Objt.transform.position = Cj_Tronco.transform.position;
+            Objt.name = _Tronco.name;
+
+            Troncos[i] = Objt.GetComponent<Cntrl_Objetos>();
+            Troncos[i].gameObject.SetActive(false);
         }
 
         Macetas = new Cntrl_Objetos[Cntd_Mcts];

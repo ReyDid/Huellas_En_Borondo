@@ -10,6 +10,8 @@ public class Instncd_Objetos : MonoBehaviour
     [Header("General")]
     public bool Objetos;
     public bool NoHuellas;
+    public bool Montaña;
+    public bool Rio;
     bool Lst;
     [HideInInspector]
     public int rndm;
@@ -67,22 +69,25 @@ public class Instncd_Objetos : MonoBehaviour
     }
     void FixedUpdate()
     {
-        switch (rndm)
+        if (Objetos)
         {
-            case 1:
-            case 3:
-            case 6:
-            case 8:
-                CntdPnts = 1;
-                break;
-            case 2:
-            case 4:
-            case 5:
-            case 7:
-            case 9:
-            case 10:
-                CntdPnts = 2;
-                break;
+            switch (rndm)
+            {
+                case 1:
+                case 3:
+                case 6:
+                case 8:
+                    CntdPnts = 1;
+                    break;
+                case 2:
+                case 4:
+                case 5:
+                case 7:
+                case 9:
+                case 10:
+                    CntdPnts = 2;
+                    break;
+            }
         }
         if (Inc)
         {
@@ -112,18 +117,29 @@ public class Instncd_Objetos : MonoBehaviour
             }
             else
             {
-                //
+                if (Montaña)
+                {
+                    _Objetos.Add(_Almacen.Cj_Piedra);
+                }
+                else if (Rio)
+                {
+                    _Objetos.Add(_Almacen.Cj_Cocodrilo);
+                    _Objetos.Add(_Almacen.Cj_Tronco);
+                }
             }
 
             Lst = true;
         }
         else
         {
+            bool blq_Trnc = false;
             for (int I = 0; I < CntdPnts; I++)
             {
                 pntInstnc = Random.Range(0, PntsInstc.Count);
-                Objt = Random.Range(0, _Objetos.Count);
-
+                if (!blq_Trnc)
+                {
+                    Objt = Random.Range(0, _Objetos.Count);
+                }
 
                 if (Objetos)
                 {
@@ -144,6 +160,16 @@ public class Instncd_Objetos : MonoBehaviour
                             }
                         }
                     }
+                }
+
+                if (_Objetos[Objt].name == "Tronco")
+                {
+                    I = cntdPnts;
+                    cntdPnts = 0;
+                }
+                else
+                {
+                    blq_Trnc = true;
                 }
             }
         }

@@ -101,7 +101,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.9528302, g: 0.8398873, b: 0.6981428, a: 1}
-    - _EmissionColor: {r: 0.084905684, g: 0.046190824, b: 0.046190824, a: 1}
+    - _EmissionColor: {r: 0.26062062, g: 0.2611054, b: 0.3301887, a: 1}
     - _HDREmissionColor: {r: 0.18867922, g: 0.123421155, b: 0.036786497, a: 1}
     - _OutlineColor: {r: 0.054901958, g: 0.115381956, b: 0.14117648, a: 1}
   m_BuildTextureStacks: []

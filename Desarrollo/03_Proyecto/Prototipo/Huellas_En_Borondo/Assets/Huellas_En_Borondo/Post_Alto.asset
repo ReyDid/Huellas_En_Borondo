@@ -21,8 +21,8 @@ MonoBehaviour:
   BlurIterations: 5
   ColorGradingEnabled: 1
   ToneMappingEnabled: 1
-  Gamma: 0.2
-  Exposure: 4.4
+  Gamma: 0.22
+  Exposure: 3.6
   LUTEnabled: 0
   LUT: {fileID: 0}
   LUTIntensity: 0
@@ -33,11 +33,11 @@ MonoBehaviour:
   FishEyeEffectStart: 0.3
   FishEyeEffectEnd: 1
   BloomEnabled: 1
-  BloomBlurRadius: 0.0014
+  BloomBlurRadius: 0.0026
   BloomBlurTextureResolutionDivider: 1
   BloomBlurIterations: 8
   FilterTextureResolutionDivider: 1
-  BloomIntensity: 1.9
+  BloomIntensity: 0.69
   BloomThreshold: 1
-  BloomSoftThreshold: 0.6
+  BloomSoftThreshold: 1.2
   BloomDebugView: 0

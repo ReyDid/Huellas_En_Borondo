@@ -7,6 +7,7 @@ using TMPro;
 public class Cntrl_Interfaz : MonoBehaviour
 {
     [Header("General")]
+    public bool Transporte;
     public string _PrsnjSlccn;
     public bool Palabra;
 
@@ -26,6 +27,12 @@ public class Cntrl_Interfaz : MonoBehaviour
     public RectTransform AvtrR_Bnks;
     public RectTransform Sld_Bnks;
     public RectTransform Hbld_Bnks;
+    //
+    public RectTransform Trnsprt;
+    public GameObject Trnsprt_Chv;
+    public GameObject Trnsprt_Cnst;
+    public GameObject Trnsprt_Cn;
+
     //
     public TMP_Text Pntcn;
     public TMP_Text Mcts;
@@ -62,6 +69,7 @@ public class Cntrl_Interfaz : MonoBehaviour
         _PrsnjSlccn = _Partida._Personaje._Estado.Personaje;
 
         Puntuacion();
+        Transportes();
         ColeccionPalabra();
         Personajes();
         Salud();
@@ -72,6 +80,26 @@ public class Cntrl_Interfaz : MonoBehaviour
     {
         Pntcn.text = _Partida._Personaje._Estado.Cntd_Huellas.ToString();
         Mcts.text = _Partida._Personaje._Estado.Cntd_Macetas + "/" + _Partida._Personaje._Estado.CntdTtl_Macetas;
+    }
+    void Transportes()
+    {
+        Transporte = _Partida._Personaje._Estado.EnTrnsprt;
+
+        float Ltrl = 0;
+        if (Transporte)
+        {
+            Ltrl = 106;
+
+            Trnsprt_Chv.SetActive(_Partida._Personaje._Estado.Chiva);
+            Trnsprt_Cnst.SetActive(_Partida._Personaje._Estado.Canasto);
+            Trnsprt_Cn.SetActive(_Partida._Personaje._Estado.Canoa);
+        }
+        else
+        {
+            Ltrl = -106;
+        }
+
+        Trnsprt.anchoredPosition = Vector2.Lerp(Trnsprt.anchoredPosition, new Vector2(Ltrl, Trnsprt.anchoredPosition.y), 2 * Time.deltaTime);
     }
     void ColeccionPalabra()
     {

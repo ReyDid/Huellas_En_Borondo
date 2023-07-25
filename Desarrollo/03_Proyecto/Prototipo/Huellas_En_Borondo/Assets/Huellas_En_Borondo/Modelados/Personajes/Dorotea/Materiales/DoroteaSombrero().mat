@@ -100,7 +100,7 @@ Material:
     - _VertexColor: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.93560874, g: 0.9315296, b: 0.9433962, a: 1}
+    - _Color: {r: 0.78039217, g: 1, b: 0.9254902, a: 1}
     - _EmissionColor: {r: 0.18867922, g: 0.08308811, b: 0.067046374, a: 1}
     - _HDREmissionColor: {r: 0.18867922, g: 0.123421155, b: 0.036786497, a: 1}
     - _OutlineColor: {r: 0.3772547, g: 0.038922485, b: 0.38679248, a: 1}

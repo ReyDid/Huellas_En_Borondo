@@ -6,14 +6,18 @@ public class Cntrl_Objetos : MonoBehaviour
 {
     public string Tipo;
     public bool Valido;
+    public bool Animacion;
 
     [Header("General")]
     public GameObject _Objeto;
     public bool Dstr;
+    public bool Impctr;
     public int rndmVlcd;
     bool RyHch;
 
     [Header("Composicion")]
+    public Animator Anmdr;
+    public Animator Anmdr2;
     public Collider Clsn_Cmp;
     public RaycastHit Ry;
     public float DstncRy;
@@ -45,6 +49,14 @@ public class Cntrl_Objetos : MonoBehaviour
     public class TipoObjeto
     {
         public int Cntd;
+
+        public Quaternion OrntcnPltfrm;
+        [HideInInspector]
+        public float Inclncn;
+        [HideInInspector]
+        public float Angl;
+        public Transform Pst_1;
+        public Transform Pst_2;
     }
 
     // Start is called before the first frame update
@@ -66,6 +78,9 @@ public class Cntrl_Objetos : MonoBehaviour
     {
         switch (Tipo)
         {
+            case "Transporte":
+                Transporte();
+                break;
             case "Huella":
                 Huella();
                 _Tipo.Cntd = 5;
@@ -86,6 +101,13 @@ public class Cntrl_Objetos : MonoBehaviour
             RyHch = true;
         }
 
+        if (Animacion)
+        {
+            if (Impctr)
+            {
+                Anmcn();
+            }
+        }
         if (Dstr)
         {
             Destruir();
@@ -102,6 +124,20 @@ public class Cntrl_Objetos : MonoBehaviour
         {
             //Debug.DrawLine(transform.position, Ry.point, Color.green);
             _Objeto.transform.position = Ry.point;
+        }
+    }
+    void RayoOrientacion()
+    {
+        if (Physics.Raycast(transform.position + (Vector3.up * 1), -Vector3.up, out Ry, DstncRy, Solido))
+        {
+            //Debug.DrawLine(transform.position, Ry.point, Color.green);
+            Quaternion Rtcn = _Objeto.transform.rotation;
+            Rtcn = Quaternion.FromToRotation(_Objeto.transform.up, Ry.normal) * _Objeto.transform.rotation;
+            Quaternion Orntcn = _Objeto.transform.rotation;
+            Orntcn.eulerAngles = new Vector3(Rtcn.eulerAngles.x, Rtcn.eulerAngles.y, Rtcn.eulerAngles.z);
+            _Tipo.OrntcnPltfrm = Orntcn;
+
+            //_Objeto.transform.rotation = Orntcn;
         }
     }
     void Gravedad()
@@ -133,7 +169,10 @@ public class Cntrl_Objetos : MonoBehaviour
     }
 
 
-
+    void Transporte()
+    {
+        RayoOrientacion();
+    }
     void Huella()
     {
         if (_NoColision.Intr)
@@ -164,9 +203,21 @@ public class Cntrl_Objetos : MonoBehaviour
 
 
 
-
+    public void Anmcn()
+    {
+        Anmdr.SetBool("Impactar", true);
+        if (Anmdr2 != null)
+        {
+            Anmdr2.SetBool("Impactar", true);
+        }
+    }
     public void Destruir()
     {
+        if (Animacion)
+        {
+            Anmdr.Rebind();
+        }
+
         _Objeto.transform.localPosition = Vector3.zero;
         _Objeto.transform.localScale = new Vector3(1, 1, 1);
 
@@ -179,6 +230,7 @@ public class Cntrl_Objetos : MonoBehaviour
         RyHch = false;
         _NoColision.Intr = false;
         gameObject.SetActive(false);
+        Impctr = false;
         Dstr = false;
     }
 }

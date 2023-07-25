@@ -6,6 +6,7 @@ public class Clsn_Personaje : MonoBehaviour
 {
     [Header("Personaje")]
     public bool Prsnj1, Prsnj2, PrsnjG;
+    public bool Vuelo;
 
     [Header("Cuerpo")]
     public float DstncRyEscl;
@@ -31,6 +32,101 @@ public class Clsn_Personaje : MonoBehaviour
     }
     void FixedUpdate()
     {
+        switch (name)
+        {
+            case "Pie":
+                RaycastHit ryPs;
+                float dstncRy = 211;
+
+                if (Prsnj1)
+                {
+                    if (Physics.Raycast(transform.position + (Vector3.up * .4f), transform.up * -dstncRy, out ryPs, ObstclEsclr))
+                    {
+                        float DstncSl = Vector3.Distance(transform.position, ryPs.point);
+                        Quaternion rtcn = transform.rotation;
+                        rtcn.eulerAngles = ryPs.normal;
+                        transform.rotation = rtcn;
+
+                        if (DstncSl <= .14)
+                        {
+                            _Personaje._Estado.EnParacaidas = false;
+                            _Personaje._Estado.P1_EnSuelo = !_Personaje._Estado.P1_Escala ? true : false;
+                            _Personaje._Estado.P1_EnAire = false;
+                        }
+                        else
+                        {
+                            if (DstncSl > 7.5 && DstncSl <= 8.5)// Usar Paracaidas
+                            {
+                                _Personaje._Estado.EnParacaidas = true;
+                            }
+
+                            _Personaje._Estado.P1_EnSuelo = false;
+                            if (DstncSl > 1)
+                            {
+                                _Personaje._Estado.P1_EnAire = true;
+                            }
+                        }
+                    }
+                }
+                if (Prsnj2)
+                {
+                    if (Physics.Raycast(transform.position + (Vector3.up * .4f), transform.up * -dstncRy, out ryPs, ObstclEsclr))
+                    {
+                        float DstncSl = Vector3.Distance(transform.position, ryPs.point);
+
+                        if (DstncSl <= .14)
+                        {
+                            _Personaje._Estado.P2_EnSuelo = !_Personaje._Estado.P2_Escala ? true : false;
+                            _Personaje._Estado.P2_EnAire = false;
+                        }
+                        else
+                        {
+                            _Personaje._Estado.P2_EnSuelo = false;
+                            if (DstncSl > 1)
+                            {
+                                _Personaje._Estado.P2_EnAire = true;
+                            }
+                        }
+                    }
+                }
+                if (PrsnjG)
+                {
+                    if (Physics.Raycast(transform.position + (Vector3.up * .4f), transform.up * -dstncRy, out ryPs, ObstclEsclr))
+                    {
+                        //Debug.DrawLine(transform.position + (Vector3.up * .4f), ryPs.point, Color.blue);
+                        float DstncSl = Vector3.Distance(transform.position, ryPs.point);
+                        _Personaje._Estado.DstncVl = ryPs.point;
+
+                        if (!Vuelo)
+                        {
+                            if (DstncSl <= .14)
+                            {
+                                _Personaje._Estado.PG_EnSuelo = !_Personaje._Estado.PG_Escala ? true : false;
+                                _Personaje._Estado.PG_EnAire = false;
+                            }
+                            else
+                            {
+                                _Personaje._Estado.PG_EnSuelo = false;
+                                if (DstncSl > 1)
+                                {
+                                    _Personaje._Estado.PG_EnAire = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            _Personaje._Estado.PG_EnSuelo = false;
+                            _Personaje._Estado.PG_EnAire = true;
+                            if (DstncSl <= 4.4)
+                            {
+                                _Personaje._Estado.PG_Vuelo = true;
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+
         if (name == "Escalar")
         {
             RaycastHit ryEscl;
@@ -39,7 +135,7 @@ public class Clsn_Personaje : MonoBehaviour
             {
                 if (Physics.Raycast(transform.position + (Vector3.up * .2f), transform.forward, out ryEscl, DstncRyEscl, ObstclEsclr))
                 {
-                    Debug.DrawLine(transform.position + (Vector3.up * .2f), ryEscl.point, Color.green);
+                    //Debug.DrawLine(transform.position + (Vector3.up * .2f), ryEscl.point, Color.green);
 
                     if (Prsnj1)
                     {
@@ -57,7 +153,7 @@ public class Clsn_Personaje : MonoBehaviour
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position + (Vector3.up * .2f), transform.forward * DstncRyEscl, Color.blue);
+                    //Debug.DrawRay(transform.position + (Vector3.up * .2f), transform.forward * DstncRyEscl, Color.blue);
 
                     if (Prsnj1)
                     {
@@ -95,6 +191,49 @@ public class Clsn_Personaje : MonoBehaviour
 
     void OnTriggerEnter(Collider Otr)
     {
+        if (Otr.gameObject.layer == 31)// Transporte
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (_Personaje._Transporte != null && _Personaje._Transporte.EnManejo)
+                        {
+                            _Personaje._Transporte.EnManejo = false;
+                            _Personaje._Transporte = null;
+                        }
+
+                        _Personaje._Estado.BloqueoCntrl = true;
+                        _Personaje._Estado.FrzDash = 0;
+                    }
+                    break;
+            }
+        }
+        if (Otr.gameObject.layer == 22)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (Otr.tag == "Trnsprt")
+                        {
+                            if ((Otr.name == "Chiva" || Otr.name == "Canasto" || Otr.name == "Canoa"))
+                            {
+                                _Personaje._Transporte = Otr.GetComponent<Instncd_Transporte>();
+
+                                if (!_Personaje._Transporte.EnManejo)
+                                {
+                                    _Personaje._Transporte.EnManejo = true;
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+
         if (Otr.gameObject.layer == 28)
         {
             switch (name)
@@ -166,23 +305,29 @@ public class Clsn_Personaje : MonoBehaviour
                             {
                                 case "Cono":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_Cono);
+                                    _Personaje._Estado.Estd_Impacto = 1;
                                     break;
                                 case "Basura":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_Basura);
+                                    _Personaje._Estado.Estd_Impacto = 1;
                                     break;
                                 case "Bote_Basura":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_BtBasura);
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos._TpBsr);
+                                    _Personaje._Estado.Estd_Impacto = 2;
                                     break;
                                 case "Bloques":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_Bloques);
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos._Blqs);
+                                    _Personaje._Estado.Estd_Impacto = 1;
                                     break;
                                 case "Muro_Bloques":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_MrBloques);
+                                    _Personaje._Estado.Estd_Impacto = 2;
                                     break;
                                 case "Silla":
                                     _Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos.Impct_Silla);
+                                    _Personaje._Estado.Estd_Impacto = 2;
                                     break;
                             }
                             switch (_Personaje._Estado.Personaje)
@@ -200,6 +345,10 @@ public class Clsn_Personaje : MonoBehaviour
                                     }
                                     break;
                             }
+
+                            _Personaje._Estado.TmpImpct = .08f;
+                            Otr.GetComponent<Clsn_Objetos>()._Objetos.Impctr = true;
+
                         }
                         if (Otr.tag == "Mct")// Objeto : Maceta
                         {
@@ -304,9 +453,91 @@ public class Clsn_Personaje : MonoBehaviour
                     break;
             }
         }
+
+        if (Otr.gameObject.layer == 15)// Confrontacion de Villano
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        Cntrl_Villano.Confrontacion = !Cntrl_Villano.Confrontacion;
+                        if (Otr.tag == "Agtr_Vlln")
+                        {
+                            Cntrl_Villano.Agotado = true;
+                        }
+                    }
+                    break;
+            }
+        }
+        if (Otr.gameObject.layer == 17)// Daño de Villano
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (Otr.tag != "Pdr_Estn")// Disminuir Salud
+                        {
+                            //_Personaje._Efectos.Accion_Alts.PlayOneShot(_Personaje._Efectos._TpBsr);
+                            _Personaje._Estado.Estd_Impacto = 2;
+
+                            switch (_Personaje._Estado.Personaje)
+                            {
+                                case "Dorotea":
+                                    if (_Personaje._Estado.Sld_Dorotea > 0)
+                                    {
+                                        _Personaje._Estado.Sld_Dorotea--;
+                                    }
+                                    break;
+                                case "Benkos":
+                                    if (_Personaje._Estado.Sld_Benkos > 0)
+                                    {
+                                        _Personaje._Estado.Sld_Benkos--;
+                                    }
+                                    break;
+                            }
+                        }
+                        else// Estunear
+                        {
+                            _Personaje._Estado.Estd_Impacto = 2;
+                        }
+
+                        _Personaje._Estado.TmpImpct = .08f;
+                    }
+                    break;
+            }
+        }
     }
     void OnTriggerStay(Collider Otr)
     {
+        if (Otr.gameObject.layer == 22)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (Otr.tag == "Trnsprt")
+                        {
+                            _Personaje._Estado.EnTrnsprt = true;
+                            if ((Otr.name == "Chiva" || Otr.name == "Canasto" || Otr.name == "Canoa") && Otr.GetComponent<Instncd_Transporte>().EnManejo)
+                            {
+                                Otr.GetComponent<Instncd_Transporte>().Pasajero1 = _Personaje.Pdr_Prsnj1;
+                                Otr.GetComponent<Instncd_Transporte>().Pasajero2 = _Personaje.Pdr_Prsnj2;
+                                Otr.GetComponent<Instncd_Transporte>().Conductor = _Personaje._Avatar_1.transform.GetChild(1).gameObject;
+                                Otr.GetComponent<Instncd_Transporte>().Conduccion = true;
+                            }
+
+                            _Personaje._Estado.Chiva = Otr.name == "chiva";
+                            _Personaje._Estado.Canasto = Otr.name == "canasto";
+                            _Personaje._Estado.Canoa = Otr.name == "canoa";
+                        }
+                    }
+                    break;
+            }
+        }
+
         if (Otr.gameObject.layer == 28)
         {
             switch (name)
@@ -314,15 +545,15 @@ public class Clsn_Personaje : MonoBehaviour
                 case "Pie":
                     if (Prsnj1)
                     {
-                        _Personaje._Estado.P1_EnSuelo = !_Personaje._Estado.P1_Escala ? true : false;
+                        //_Personaje._Estado.P1_EnSuelo = !_Personaje._Estado.P1_Escala ? true : false;
                     }
                     if (Prsnj2)
                     {
-                        _Personaje._Estado.P2_EnSuelo = !_Personaje._Estado.P2_Escala ? true : false;
+                        //_Personaje._Estado.P2_EnSuelo = !_Personaje._Estado.P2_Escala ? true : false;
                     }
                     if (PrsnjG)
                     {
-                        _Personaje._Estado.PG_EnSuelo = !_Personaje._Estado.PG_Escala ? true : false;
+                        //_Personaje._Estado.PG_EnSuelo = !_Personaje._Estado.PG_Escala ? true : false;
                     }
                     break;
             }
@@ -375,6 +606,34 @@ public class Clsn_Personaje : MonoBehaviour
     }
     void OnTriggerExit(Collider Otr)
     {
+        if (Otr.gameObject.layer == 31)// Transporte
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        _Personaje._Estado.BloqueoCntrl = false;
+                    }
+                    break;
+            }
+        }
+        if (Otr.gameObject.layer == 22)
+        {
+            switch (name)
+            {
+                case "Cuerpo":
+                    if (Prsnj1)
+                    {
+                        if (Otr.tag == "Trnsprt")
+                        {
+                            _Personaje._Estado.EnTrnsprt = false;
+                        }
+                    }
+                    break;
+            }
+        }
+
         if (Otr.gameObject.layer == 28)
         {
             switch (name)
@@ -382,15 +641,15 @@ public class Clsn_Personaje : MonoBehaviour
                 case "Pie":
                     if (Prsnj1)
                     {
-                        _Personaje._Estado.P1_EnSuelo = false;
+                        //_Personaje._Estado.P1_EnSuelo = false;
                     }
                     if (Prsnj2)
                     {
-                        _Personaje._Estado.P2_EnSuelo = false;
+                        //_Personaje._Estado.P2_EnSuelo = false;
                     }
                     if (PrsnjG)
                     {
-                        _Personaje._Estado.PG_EnSuelo = false;
+                        //_Personaje._Estado.PG_EnSuelo = false;
                     }
                     break;
             }

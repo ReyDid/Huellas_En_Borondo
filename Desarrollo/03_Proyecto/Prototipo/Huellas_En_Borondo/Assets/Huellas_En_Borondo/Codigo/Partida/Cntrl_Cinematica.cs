@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cntrl_Cinematica : MonoBehaviour
 {
-    bool rstCmr;
+    public bool rstCmr;
 
     [Header("General")]
     public bool ElmntVc;
@@ -278,5 +278,9 @@ public class Cntrl_Cinematica : MonoBehaviour
     public void Evento()
     {
 
+    }
+    public void Bajar_Chiva()
+    {
+        Cntrl_Personaje.Sentado = false;
     }
 }

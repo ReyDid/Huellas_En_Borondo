@@ -17,6 +17,10 @@ public class Cntrl_Personaje : MonoBehaviour
     public float Tmp;
     float tmp;
 
+    public GameObject[] Remos;
+    public GameObject Paracaidas_1;
+    public GameObject Paracaidas_2;
+
     [Header("General")]
     public AudioMixer _Sonido;
     public GameObject _Personaje_1;
@@ -297,23 +301,20 @@ public class Cntrl_Personaje : MonoBehaviour
                 {
                     if (!_Estado.EnLsn)
                     {
-                        if (!_Estado.EnTrnsprt)
+                        switch (_Estado.Personaje)
                         {
-                            switch (_Estado.Personaje)
-                            {
-                                case "Dorotea":
-                                    if (_Estado.Sld_Dorotea <= 0)
-                                    {
-                                        frzrCambio = 1;
-                                    }
-                                    break;
-                                case "Benkos":
-                                    if (_Estado.Sld_Benkos <= 0)
-                                    {
-                                        frzrCambio = 1;
-                                    }
-                                    break;
-                            }
+                            case "Dorotea":
+                                if (_Estado.Sld_Dorotea <= 0)
+                                {
+                                    frzrCambio = 1;
+                                }
+                                break;
+                            case "Benkos":
+                                if (_Estado.Sld_Benkos <= 0)
+                                {
+                                    frzrCambio = 1;
+                                }
+                                break;
                         }
                     }
                     else
@@ -328,6 +329,30 @@ public class Cntrl_Personaje : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Remos[0].SetActive(_Estado.EnTrnsprt && _Estado.Canoa); Remos[1].SetActive(_Estado.EnTrnsprt && _Estado.Canoa);
+        Remos[2].SetActive(_Estado.EnTrnsprt && _Estado.Canoa); Remos[3].SetActive(_Estado.EnTrnsprt && _Estado.Canoa);
+        //
+        float SclPrcds = 0;
+        if (_Estado.EnParacaidas)
+        {
+            if (!_Estado.BloqueoCntrl)
+            {
+                SclPrcds = 88;
+            }
+            else
+            {
+                SclPrcds = 0;
+            }
+        }
+        else
+        {
+            SclPrcds = 0;
+        }
+        Paracaidas_1.transform.localScale = Vector3.Lerp(Paracaidas_1.transform.localScale, new Vector3(SclPrcds, SclPrcds, SclPrcds), 6 * Time.deltaTime);
+        Paracaidas_2.transform.localScale = Vector3.Lerp(Paracaidas_2.transform.localScale, new Vector3(SclPrcds, SclPrcds, SclPrcds), 6 * Time.deltaTime);
+        //Paracaidas_1.SetActive(_Estado.EnParacaidas);
+        //Paracaidas_2.SetActive(_Estado.EnParacaidas);
+
         // Calculo de Aparicion de Maceta
         if (_Estado.ClclHlls_Mct > 25)
         {
@@ -475,6 +500,7 @@ public class Cntrl_Personaje : MonoBehaviour
         Palabra = "BORONDO";
         Letras = 7;
 
+        _Estado.EnParacaidas = false;
         _Transporte = null;
         _Estado.EnCnmtc = false;
         _Estado.FrzDash = 0;
@@ -1086,7 +1112,7 @@ public class Cntrl_Personaje : MonoBehaviour
 
         // Cambio de Personaje
         float vlcdCmb = 2;
-        if ((entrd_Cambio > 0 || frzrCambio > 0) && (!_Estado.EnTrnsprt))
+        if ((entrd_Cambio > 0 || frzrCambio > 0))
         {
             if ((frzrCambio > 0) || (frzrCambio <= 0 && _Estado.TmpEnfrAccn_ <= 0 && _Estado.TmpEnfrCmb_ == 0))
             {
@@ -1102,14 +1128,30 @@ public class Cntrl_Personaje : MonoBehaviour
                         _Efectos.Accion_Alts.PlayOneShot(_Efectos.Cmb_Dorotea);
                         _Estado.Personaje = "Dorotea";
                     }
-                    GameObject prsnj1 = Pdr_Prsnj2.transform.GetChild(1).gameObject;
-                    GameObject prsnj2 = Pdr_Prsnj1.transform.GetChild(1).gameObject;
-                    GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
-                    GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
-                    Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
-                    Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
-                    prsnj1.transform.parent = Pdr_Prsnj1.transform;
-                    prsnj2.transform.parent = Pdr_Prsnj2.transform;
+                    if (_Transporte == null)
+                    {
+                        GameObject prsnj1 = Pdr_Prsnj2.transform.GetChild(1).gameObject;
+                        GameObject prsnj2 = Pdr_Prsnj1.transform.GetChild(1).gameObject;
+                        GameObject Prsnj1 = Pdr_Prsnj2.transform.GetChild(0).gameObject;
+                        GameObject Prsnj2 = Pdr_Prsnj1.transform.GetChild(0).gameObject;
+                        Pdr_Prsnj1.transform.GetChild(0).parent = Pdr_Prsnj2.transform;
+                        Pdr_Prsnj2.transform.GetChild(0).parent = Pdr_Prsnj1.transform;
+                        prsnj1.transform.parent = Pdr_Prsnj1.transform;
+                        prsnj2.transform.parent = Pdr_Prsnj2.transform;
+                    }
+                    else
+                    {
+                        GameObject prsnj1 = _Transporte.Puesto1.transform.GetChild(0).gameObject;
+                        GameObject prsnj2 = _Transporte.Puesto2.transform.GetChild(0).gameObject;
+
+                        prsnj1.transform.parent = _Transporte.Puesto2.transform;
+                        prsnj2.transform.parent = _Transporte.Puesto1.transform;
+
+                        _Transporte.Puesto1.transform.GetChild(0).localRotation = Quaternion.identity;
+                        _Transporte.Puesto2.transform.GetChild(0).localRotation = Quaternion.identity;
+                        _Transporte.Puesto1.transform.GetChild(0).localPosition = Vector3.zero;
+                        _Transporte.Puesto2.transform.GetChild(0).localPosition = Vector3.zero;
+                    }
 
                     _Estado.CmbrPersonaje = true;
                 }
@@ -1151,6 +1193,13 @@ public class Cntrl_Personaje : MonoBehaviour
 
         }
         Pdr_Prsnj2.transform.GetChild(0).gameObject.SetActive(!_Estado.EnLsn);
+        if (_Transporte != null)
+        {
+            if (_Transporte.Puesto2.childCount > 0)
+            {
+                _Transporte.Puesto2.transform.GetChild(0).gameObject.SetActive(!_Estado.EnLsn);
+            }
+        }
 
 
         Pdr_Prsnj1.transform.GetChild(0).localRotation = Quaternion.identity;
@@ -1260,6 +1309,7 @@ public class Cntrl_Personaje : MonoBehaviour
         }
 
         // Personaje 1
+        A_Prsnj1.SetInteger("Prsnj", 1);
         A_Prsnj1.SetBool("EnChiva", _Estado.EnTrnsprt && _Estado.Chiva && Sentado);
         A_Prsnj1.SetBool("EnCanasto", _Estado.EnTrnsprt && _Estado.Canasto);
         A_Prsnj1.SetBool("EnCanoa", _Estado.EnTrnsprt && _Estado.Canoa);
@@ -1273,6 +1323,7 @@ public class Cntrl_Personaje : MonoBehaviour
         A_Prsnj1.SetInteger("Impacto", _Estado.Estd_Impacto);
 
         // Personaje 2
+        A_Prsnj2.SetInteger("Prsnj", 2);
         A_Prsnj2.SetBool("EnChiva", _Estado.EnTrnsprt && _Estado.Chiva && Sentado);
         A_Prsnj2.SetBool("EnCanasto", _Estado.EnTrnsprt && _Estado.Canasto);
         A_Prsnj2.SetBool("EnCanoa", _Estado.EnTrnsprt && _Estado.Canoa);

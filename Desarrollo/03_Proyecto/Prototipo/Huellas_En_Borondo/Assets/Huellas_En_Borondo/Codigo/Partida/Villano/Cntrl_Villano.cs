@@ -405,6 +405,7 @@ public class Cntrl_Villano : MonoBehaviour
             }
             HjFBX = FBX.GetChild(0).GetChild(0);
             FBX.GetChild(0).GetChild(0).parent = null;
+            Pdr_Division[0].transform.parent.gameObject.SetActive(false);
             TmpAgtd = .01f;
         }
         if (HjFBX != null)

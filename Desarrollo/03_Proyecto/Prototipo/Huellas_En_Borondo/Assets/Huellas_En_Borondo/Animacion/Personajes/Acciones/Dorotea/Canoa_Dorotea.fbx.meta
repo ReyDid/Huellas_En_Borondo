@@ -1,0 +1,895 @@
+fileFormatVersion: 2
+guid: f1a87923280ea3b4abdb1c72c70fd7cb
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -4425615570410494383
+    second: 0_Drt_Esqlt|0_Bnks_EsqltAction
+  - first:
+      74: 8488477116632362868
+    second: 0_Drt_Esqlt|0_Drt_EsqltAction
+  - first:
+      74: 9142220607718398026
+    second: 0_Drt_Esqlt|Action
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: 0_Drt_Esqlt|0_Bnks_EsqltAction
+      takeName: 0_Drt_Esqlt|0_Bnks_EsqltAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: 0_Drt_Esqlt|0_Drt_EsqltAction
+      takeName: 0_Drt_Esqlt|0_Drt_EsqltAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000000000000000000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: 0_Drt_Esqlt|Action
+      takeName: 0_Drt_Esqlt|Action
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Base
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: AntePierna.L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: AntePierna.R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pierna.L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pierna.R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pie.L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Pie.R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Torso
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cuello
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Cabeza
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hombro.L
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hombro.R
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: AnteBrazo.L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: AnteBrazo.R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Brazo.L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Brazo.R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mano.L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Mano.R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedosPie.L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedosPie.R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc1.L
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc2.L
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc3.L
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr1.L
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr2.L
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr3.L
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn1.L
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn2.L
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn3.L
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q1.L"
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q2.L"
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q3.L"
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc1.R
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc2.R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Indc3.R
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr1.R
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr2.R
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Plgr3.R
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn1.R
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn2.R
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: DedoMn_Crzn3.R
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q1.R"
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q2.R"
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: "DedoMn_M\xF1q3.R"
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Canoa_Dorotea(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: 0_Drt_Esqlt
+      parentName: Canoa_Dorotea(Clone)
+      position: {x: -0, y: 0, z: 1.2636837}
+      rotation: {x: 0.000000053385076, y: 0.7071068, z: 0.70710677, w: -0.00000005338508}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Base
+      parentName: 0_Drt_Esqlt
+      position: {x: -0.0000000019081092, y: -0.012636836, z: 0.012202402}
+      rotation: {x: -0.00000003090897, y: -0.7071069, z: -0.7071067, w: 0.000000030908797}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Torso
+      parentName: Base
+      position: {x: -0, y: 0.0021188927, z: 0}
+      rotation: {x: -0.0690195, y: 1.0658141e-14, z: 8.881784e-15, w: 0.99761534}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cuello
+      parentName: Torso
+      position: {x: 6.661338e-17, y: 0.0067742052, z: -2.9802322e-10}
+      rotation: {x: 0.16119952, y: -0.000000117650224, z: -0.000000019216467, w: 0.98692185}
+      scale: {x: 1.0000002, y: 0.9999995, z: 0.9999997}
+    - name: Cabeza
+      parentName: Cuello
+      position: {x: -9.325873e-17, y: 0.0024064519, z: -7.450581e-10}
+      rotation: {x: -0.036491558, y: 0.00000011912982, z: 0.0000000043501274, w: 0.999334}
+      scale: {x: 0.99999964, y: 1.0000002, z: 1}
+    - name: Cabeza_end
+      parentName: Cabeza
+      position: {x: 3.5527136e-17, y: 0.004346422, z: 2.9802322e-10}
+      rotation: {x: -0, y: 3.5527137e-14, z: -4.8849813e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: Cabeza_end_end
+      parentName: Cabeza_end
+      position: {x: -0, y: 0.00434642, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hombro.L
+      parentName: Torso
+      position: {x: -0.0009353431, y: 0.0062954044, z: 0.00087527913}
+      rotation: {x: -0.04252384, y: -0.10081876, z: 0.6916731, w: 0.7138738}
+      scale: {x: 0.99999964, y: 0.9999999, z: 1.0000001}
+    - name: AnteBrazo.L
+      parentName: Hombro.L
+      position: {x: -5.587935e-10, y: 0.0022461808, z: 0}
+      rotation: {x: 0.07907796, y: -0.013675253, z: 0.04063764, w: 0.995946}
+      scale: {x: 1.0000001, y: 1, z: 1.0000004}
+    - name: Brazo.L
+      parentName: AnteBrazo.L
+      position: {x: -2.9802322e-10, y: 0.005189338, z: -5.9604643e-10}
+      rotation: {x: 0.055868994, y: 0.0041321106, z: -0.055054225, w: 0.9969105}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: Mano.L
+      parentName: Brazo.L
+      position: {x: -9.988435e-10, y: 0.003826886, z: 3.72529e-10}
+      rotation: {x: 0.02638997, y: -0.000000042840828, z: -0.02783462, w: 0.9992641}
+      scale: {x: 1.0000007, y: 1.0000004, z: 0.9999998}
+    - name: "DedoMn_M\xF1q1.L"
+      parentName: Mano.L
+      position: {x: 0.00003645867, y: 0.001638766, z: -0.0007765911}
+      rotation: {x: 0.37046093, y: 0.07509157, z: 0.06823154, w: 0.9232901}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1.0000002}
+    - name: "DedoMn_M\xF1q2.L"
+      parentName: "DedoMn_M\xF1q1.L"
+      position: {x: 5.9604643e-10, y: 0.0010475601, z: -2.9802322e-10}
+      rotation: {x: 0.015382282, y: -0.008924136, z: -0.03266111, w: 0.9993082}
+      scale: {x: 0.99999994, y: 1.0000004, z: 1.0000007}
+    - name: "DedoMn_M\xF1q3.L"
+      parentName: "DedoMn_M\xF1q2.L"
+      position: {x: 0.0000000020861626, y: 0.0009299835, z: 1.4901161e-10}
+      rotation: {x: 0.0048841448, y: -0.00033562808, z: 0.03665656, w: 0.999316}
+      scale: {x: 1.0000001, y: 1.0000007, z: 1.0000004}
+    - name: "DedoMn_M\xF1q3.L_end"
+      parentName: "DedoMn_M\xF1q3.L"
+      position: {x: 1.4901161e-10, y: 0.00080729334, z: -4.4703483e-10}
+      rotation: {x: -0.00000019278369, y: -0.0000027788324, z: -0.0000031118648, w: 1}
+      scale: {x: 1, y: 0.9999997, z: 1}
+    - name: "DedoMn_M\xF1q3.L_end_end"
+      parentName: "DedoMn_M\xF1q3.L_end"
+      position: {x: -0, y: 0.00080729334, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Crzn1.L
+      parentName: Mano.L
+      position: {x: 0.0000066006182, y: 0.0017915302, z: -0.00014063716}
+      rotation: {x: 0.36564392, y: 0.023955751, z: 0.0412097, w: 0.9295335}
+      scale: {x: 0.9999995, y: 1.0000001, z: 1}
+    - name: DedoMn_Crzn2.L
+      parentName: DedoMn_Crzn1.L
+      position: {x: -0, y: 0.0009700335, z: 1.4901161e-10}
+      rotation: {x: -0.005900496, y: 0.00087107386, z: -0.031118825, w: 0.9994979}
+      scale: {x: 0.9999998, y: 1.0000007, z: 1.0000002}
+    - name: DedoMn_Crzn3.L
+      parentName: DedoMn_Crzn2.L
+      position: {x: -5.9604643e-10, y: 0.0010449764, z: 7.45058e-10}
+      rotation: {x: -0.01320554, y: 0.0013219585, z: 0.018267427, w: 0.9997451}
+      scale: {x: 1.0000001, y: 0.99999946, z: 1}
+    - name: DedoMn_Crzn3.L_end
+      parentName: DedoMn_Crzn3.L
+      position: {x: -5.587935e-10, y: 0.00092048396, z: 0}
+      rotation: {x: -0.00000017322594, y: -0.0000013541426, z: -0.0000012265168, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000006}
+    - name: DedoMn_Crzn3.L_end_end
+      parentName: DedoMn_Crzn3.L_end
+      position: {x: -0, y: 0.0009204842, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Indc1.L
+      parentName: Mano.L
+      position: {x: -0.00004042238, y: 0.0017457796, z: 0.0008609311}
+      rotation: {x: 0.36441448, y: 0.00000041851533, z: 0.017109945, w: 0.9310797}
+      scale: {x: 0.99999976, y: 1, z: 1.0000002}
+    - name: DedoMn_Indc2.L
+      parentName: DedoMn_Indc1.L
+      position: {x: 0.000000001490116, y: 0.00093187834, z: 0.0000000010430813}
+      rotation: {x: -0.0033461147, y: 0.00005839351, z: 0.041419715, w: 0.99913627}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000002}
+    - name: DedoMn_Indc3.L
+      parentName: DedoMn_Indc2.L
+      position: {x: -0.0000000011920929, y: 0.0010190677, z: 8.9406965e-10}
+      rotation: {x: -0.03492549, y: 0.0035163404, z: 0.018250642, w: 0.99921715}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
+    - name: DedoMn_Indc3.L_end
+      parentName: DedoMn_Indc3.L
+      position: {x: -7.8231094e-10, y: 0.0008323233, z: -0.0000000019371509}
+      rotation: {x: -0, y: -0, z: -0.0000000017025735, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: DedoMn_Indc3.L_end_end
+      parentName: DedoMn_Indc3.L_end
+      position: {x: -0, y: 0.0008323222, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Plgr1.L
+      parentName: Mano.L
+      position: {x: -0.000031947493, y: 0.00055854773, z: 0.0006804478}
+      rotation: {x: 0.45519152, y: -0.046101768, z: 0.07476895, w: 0.88605016}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: DedoMn_Plgr2.L
+      parentName: DedoMn_Plgr1.L
+      position: {x: -7.45058e-10, y: 0.0010025838, z: 7.45058e-10}
+      rotation: {x: -0.036935486, y: 0.042035576, z: 0.010951118, w: 0.99837315}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: DedoMn_Plgr3.L
+      parentName: DedoMn_Plgr2.L
+      position: {x: -5.2154064e-10, y: 0.0005360308, z: -0.0000000016391277}
+      rotation: {x: -0.034036666, y: 0.075875096, z: -0.0076164217, w: 0.9965071}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000004}
+    - name: DedoMn_Plgr3.L_end
+      parentName: DedoMn_Plgr3.L
+      position: {x: 3.72529e-10, y: 0.0006337509, z: -1.3038516e-10}
+      rotation: {x: -0.000000059604616, y: 0.000000089406925, z: 0.000000014901154, w: 1}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1.0000006}
+    - name: DedoMn_Plgr3.L_end_end
+      parentName: DedoMn_Plgr3.L_end
+      position: {x: -0, y: 0.0006337507, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hombro.R
+      parentName: Torso
+      position: {x: 0.000935343, y: 0.006295403, z: 0.0008752793}
+      rotation: {x: -0.69208497, y: -0.6980958, z: -0.03519052, w: 0.18011765}
+      scale: {x: 1.0000001, y: 1.0000005, z: 0.9999999}
+    - name: AnteBrazo.R
+      parentName: Hombro.R
+      position: {x: 0.0000000023469329, y: 0.0022461796, z: -7.4505804e-11}
+      rotation: {x: -0.024165023, y: -0.85468215, z: 0.085561715, w: 0.51148194}
+      scale: {x: 0.9999997, y: 0.9999997, z: 1}
+    - name: Brazo.R
+      parentName: AnteBrazo.R
+      position: {x: -2.9802322e-10, y: 0.0051893387, z: 0.0000000010989606}
+      rotation: {x: -0.00046130893, y: -0.46125537, z: 0.078435734, w: 0.88379365}
+      scale: {x: 1, y: 1.0000004, z: 1.0000006}
+    - name: Mano.R
+      parentName: Brazo.R
+      position: {x: 0.0000000012293457, y: 0.0038268857, z: -1.4901161e-10}
+      rotation: {x: -0.03267915, y: 0.9927819, z: 0.020080058, w: 0.113636}
+      scale: {x: 1.0000002, y: 0.9999997, z: 0.9999993}
+    - name: "DedoMn_M\xF1q1.R"
+      parentName: Mano.R
+      position: {x: -0.000036460755, y: 0.0016387678, z: 0.0007765911}
+      rotation: {x: -0.1665514, y: -0.82791954, z: 0.33787072, w: 0.41551575}
+      scale: {x: 1.0000007, y: 1.0000002, z: 0.9999998}
+    - name: "DedoMn_M\xF1q2.R"
+      parentName: "DedoMn_M\xF1q1.R"
+      position: {x: 4.842877e-10, y: 0.0010475585, z: -0.000000001117587}
+      rotation: {x: -0.03603737, y: 0.69706273, z: 0.0022213776, w: 0.7161005}
+      scale: {x: 0.99999917, y: 0.9999994, z: 0.9999994}
+    - name: "DedoMn_M\xF1q3.R"
+      parentName: "DedoMn_M\xF1q2.R"
+      position: {x: 2.2351741e-10, y: 0.0009299823, z: 0.0000000022305175}
+      rotation: {x: 0.033576664, y: -0.7453034, z: 0.015480631, w: 0.6656996}
+      scale: {x: 1.0000001, y: 0.99999976, z: 1.0000001}
+    - name: "DedoMn_M\xF1q3.R_end"
+      parentName: "DedoMn_M\xF1q3.R"
+      position: {x: 0.000000001117587, y: 0.00080729317, z: -5.2154064e-10}
+      rotation: {x: -0.00000006519255, y: -0, z: 0.00000009126957, w: 1}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000002}
+    - name: "DedoMn_M\xF1q3.R_end_end"
+      parentName: "DedoMn_M\xF1q3.R_end"
+      position: {x: -0, y: 0.00080729334, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Crzn1.R
+      parentName: Mano.R
+      position: {x: -0.0000066038965, y: 0.0017915326, z: 0.0001406379}
+      rotation: {x: 0.23459159, y: -0.7119776, z: 0.2834767, w: -0.5980767}
+      scale: {x: 0.9999995, y: 1.0000004, z: 0.9999997}
+    - name: DedoMn_Crzn2.R
+      parentName: DedoMn_Crzn1.R
+      position: {x: 9.685754e-10, y: 0.00097003696, z: 0}
+      rotation: {x: -0.030160598, y: 0.1957315, z: -0.009661177, w: -0.980146}
+      scale: {x: 1.0000004, y: 1.0000006, z: 0.9999998}
+    - name: DedoMn_Crzn3.R
+      parentName: DedoMn_Crzn2.R
+      position: {x: 1.862645e-10, y: 0.0010449713, z: 2.2351741e-10}
+      rotation: {x: 0.02083451, y: -0.3023649, z: -0.008591324, w: -0.9529258}
+      scale: {x: 1.0000004, y: 0.99999976, z: 1.000001}
+    - name: DedoMn_Crzn3.R_end
+      parentName: DedoMn_Crzn3.R
+      position: {x: -4.9592924e-10, y: 0.00092048524, z: 1.4901161e-10}
+      rotation: {x: -0.00000073201943, y: -0.00000068545336, z: 0.00000017462297, w: 1}
+      scale: {x: 0.9999999, y: 1.0000001, z: 0.9999998}
+    - name: DedoMn_Crzn3.R_end_end
+      parentName: DedoMn_Crzn3.R_end
+      position: {x: -0, y: 0.0009204842, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Indc1.R
+      parentName: Mano.R
+      position: {x: 0.000040417162, y: 0.0017457826, z: -0.0008609301}
+      rotation: {x: -0.3644139, y: 0.00000079721156, z: -0.017107837, w: 0.9310799}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
+    - name: DedoMn_Indc2.R
+      parentName: DedoMn_Indc1.R
+      position: {x: -0.0000000017881393, y: 0.0009318742, z: -0.0000000014528632}
+      rotation: {x: -0.01800987, y: 0.4210389, z: 0.03744879, w: 0.90609026}
+      scale: {x: 1.000001, y: 1.0000007, z: 1.0000005}
+    - name: DedoMn_Indc3.R
+      parentName: DedoMn_Indc2.R
+      position: {x: 0.0000000020302833, y: 0.0010190693, z: -6.3329936e-10}
+      rotation: {x: 0.01107319, y: -0.3952093, z: -0.037819047, w: -0.9177454}
+      scale: {x: 1.0000002, y: 1, z: 0.9999999}
+    - name: DedoMn_Indc3.R_end
+      parentName: DedoMn_Indc3.R
+      position: {x: 9.313225e-11, y: 0.0008323234, z: 7.45058e-10}
+      rotation: {x: 0.000000025145706, y: -0, z: 0.000000055879347, w: 1}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000004}
+    - name: DedoMn_Indc3.R_end_end
+      parentName: DedoMn_Indc3.R_end
+      position: {x: -0, y: 0.0008323222, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: DedoMn_Plgr1.R
+      parentName: Mano.R
+      position: {x: 0.000031941236, y: 0.0005585506, z: -0.00068044645}
+      rotation: {x: -0.45872045, y: 0.19935091, z: -0.048645955, w: 0.86456263}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
+    - name: DedoMn_Plgr2.R
+      parentName: DedoMn_Plgr1.R
+      position: {x: 0.0000000011920929, y: 0.0010025839, z: 1.4901161e-10}
+      rotation: {x: 0.02464999, y: 0.10285337, z: 0.02960355, w: 0.9939503}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000002}
+    - name: DedoMn_Plgr3.R
+      parentName: DedoMn_Plgr2.R
+      position: {x: -0.0000000018626451, y: 0.00053602917, z: 0.0000000016018747}
+      rotation: {x: 0.02549897, y: 0.16081005, z: 0.023797646, w: 0.9863689}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000004}
+    - name: DedoMn_Plgr3.R_end
+      parentName: DedoMn_Plgr3.R
+      position: {x: 1.4901161e-10, y: 0.0006337507, z: -4.4703483e-10}
+      rotation: {x: -0.00000015646215, y: 0.000000089406946, z: -0.000000052154054, w: 1}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1.0000001}
+    - name: DedoMn_Plgr3.R_end_end
+      parentName: DedoMn_Plgr3.R_end
+      position: {x: -0, y: 0.0006337507, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: AntePierna.L
+      parentName: Base
+      position: {x: -0.0019126409, y: 0.00012339592, z: -4.7471155e-11}
+      rotation: {x: 0.0006433539, y: 0.014971674, z: 0.9988741, w: 0.045011062}
+      scale: {x: 1.000019, y: 1.000001, z: 1}
+    - name: Pierna.L
+      parentName: AntePierna.L
+      position: {x: -2.0489097e-10, y: 0.0061764503, z: -1.6880221e-10}
+      rotation: {x: -0.0773893, y: -0.0012280558, z: 0.027032465, w: 0.99663365}
+      scale: {x: 0.9999996, y: 0.9999993, z: 1.0000018}
+    - name: Pie.L
+      parentName: Pierna.L
+      position: {x: -1.6152626e-11, y: 0.0051956577, z: 2.386514e-10}
+      rotation: {x: -0.6288946, y: 0.0000022173626, z: -0.007708109, w: -0.7774524}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: DedosPie.L
+      parentName: Pie.L
+      position: {x: 3.632158e-10, y: 0.0020230499, z: 2.8871e-10}
+      rotation: {x: 0.16698493, y: -0.0000006749231, z: -0.0040385923, w: 0.9859512}
+      scale: {x: 0.9999999, y: 1.0000005, z: 1.0000007}
+    - name: DedosPie.L_end
+      parentName: DedosPie.L
+      position: {x: 1.8917489e-11, y: 0.0013770995, z: -1.0710209e-10}
+      rotation: {x: -0, y: 0.0000000013741327, z: -0.0000000016571702, w: 1}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000004}
+    - name: DedosPie.L_end_end
+      parentName: DedosPie.L_end
+      position: {x: -0, y: 0.0013771018, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: AntePierna.R
+      parentName: Base
+      position: {x: 0.0019126409, y: 0.00012339592, z: 6.7589115e-11}
+      rotation: {x: 0.0020184123, y: 0.015091536, z: 0.9988723, w: -0.044971}
+      scale: {x: 1.0000188, y: 1.0000008, z: 1.0000001}
+    - name: Pierna.R
+      parentName: AntePierna.R
+      position: {x: 1.2107193e-10, y: 0.006176446, z: 4.10364e-10}
+      rotation: {x: -0.07733585, y: 0.008506026, z: -0.027185068, w: 0.9965981}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1.0000011}
+    - name: Pie.R
+      parentName: Pierna.R
+      position: {x: 1.816079e-10, y: 0.0051956587, z: -1.04773785e-11}
+      rotation: {x: -0.6286239, y: 0.022404106, z: 0.01999986, w: -0.7771294}
+      scale: {x: 1, y: 1.0000007, z: 1.0000002}
+    - name: DedosPie.R
+      parentName: Pie.R
+      position: {x: -7.916242e-11, y: 0.0020230513, z: 2.4680047e-10}
+      rotation: {x: 0.16698472, y: 0.0000032419334, z: -0.0040395693, w: 0.98595124}
+      scale: {x: 0.99999976, y: 1.0000005, z: 1.0000001}
+    - name: DedosPie.R_end
+      parentName: DedosPie.R
+      position: {x: 4.1443854e-10, y: 0.0013770993, z: 3.1199304e-10}
+      rotation: {x: 0.00000016391273, y: 0.0000000010484198, z: -0.00000022114546, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: DedosPie.R_end_end
+      parentName: DedosPie.R_end
+      position: {x: -0, y: 0.0013771018, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cuerpo-Drt
+      parentName: Canoa_Dorotea(Clone)
+      position: {x: 0.000000012141115, y: -0.0000000018360521, z: 1.2636837}
+      rotation: {x: 0.000000022476295, y: -0.70710665, z: 0.7071069, w: 0.00000008429352}
+      scale: {x: 0.59999996, y: 0.6, z: 0.59999996}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

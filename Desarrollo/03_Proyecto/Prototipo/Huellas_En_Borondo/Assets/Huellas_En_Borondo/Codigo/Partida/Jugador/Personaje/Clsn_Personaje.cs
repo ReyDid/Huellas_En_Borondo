@@ -204,8 +204,11 @@ public class Clsn_Personaje : MonoBehaviour
                             _Personaje._Transporte = null;
                         }
 
-                        _Personaje._Estado.BloqueoCntrl = true;
-                        _Personaje._Estado.FrzDash = 0;
+                        if (Otr.tag == "Blqr")
+                        {
+                            _Personaje._Estado.BloqueoCntrl = true;
+                            _Personaje._Estado.FrzDash = 0;
+                        }
                     }
                     break;
             }
@@ -348,7 +351,6 @@ public class Clsn_Personaje : MonoBehaviour
 
                             _Personaje._Estado.TmpImpct = .08f;
                             Otr.GetComponent<Clsn_Objetos>()._Objetos.Impctr = true;
-
                         }
                         if (Otr.tag == "Mct")// Objeto : Maceta
                         {

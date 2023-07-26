@@ -29,6 +29,7 @@ TagManager:
   - Pdr_Nb
   - Agtr_Vlln
   - Pdr_Dvsn
+  - Blqr
   layers:
   - Default
   - TransparentFX
